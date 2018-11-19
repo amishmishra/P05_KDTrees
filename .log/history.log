@@ -1,0 +1,2222 @@
+--[ 2018.11.19.16.37.23.757.0 ]--
+NewLogger: P05_KDTrees
+Version: 1.2
+--[ 2018.11.19.16.37.23.789.0 ]--
+InitTree:
+/src/algs4.jar
+/src/Mouse.java
+/src/Point.java
+/src/stdlib.jar
+/src/KeyPress.java
+/src/PSKDTree.java
+/src/Partition.java
+/src/PointDist.java
+/src/Visualizer.java
+/src/PointSearch.java
+/src/PSBruteForce.java
+/src/FastFoodVisualizer.java
+/src/NearestNeighborVisualizer.java
+/.git/info/exclude
+/.git/logs/refs/heads/master
+/.git/logs/refs/remotes/origin/HEAD
+/.git/logs/HEAD
+/.git/refs/heads/master
+/.git/refs/remotes/origin/HEAD
+/.git/hooks/update.sample
+/.git/hooks/pre-push.sample
+/.git/hooks/commit-msg.sample
+/.git/hooks/pre-commit.sample
+/.git/hooks/pre-rebase.sample
+/.git/hooks/post-update.sample
+/.git/hooks/pre-receive.sample
+/.git/hooks/applypatch-msg.sample
+/.git/hooks/pre-applypatch.sample
+/.git/hooks/fsmonitor-watchman.sample
+/.git/hooks/prepare-commit-msg.sample
+/.git/objects/01/6dc5ddfef5b3957b300c3084667ad162a308fb
+/.git/objects/03/0fdffe7ad2b4fa7ffba4b445b357bb11815f10
+/.git/objects/05/054a55af449d7a3d22569a0d9278837d3116b7
+/.git/objects/05/aa0754159021ad4bb196249ebed23fcaee0f05
+/.git/objects/20/cc877669b4582f0ca99f8069928c89b7eba068
+/.git/objects/34/c40469b8879baee4fbd8d7ee3c930ed59cb6f3
+/.git/objects/49/554703073ae63a7122c05b80a894ac3ff48370
+/.git/objects/4d/3b7e9b600cf8616e1c3bb9adb4340e06674e20
+/.git/objects/5d/ba5bf5a0f3132828af66511a85e1412816ef5f
+/.git/objects/8c/333a97e7dbd1f8d32d947ad097e8e247f9f041
+/.git/objects/91/4c3a82a059ff11e1e2248c3ee1ce32a78bc63a
+/.git/objects/9c/780ff1eacdac600ca19795de4e5f1220a1bf3e
+/.git/objects/aa/13cb9b967d67b0a39e56e35946ed7b7627f5c5
+/.git/objects/aa/d3f0402094e10cd99e06ba2a544a57396b1919
+/.git/objects/b0/d850e715a6f640b0a3256d04a1ad59f48c464e
+/.git/objects/b1/a69ba0a6fc553f8d7c316c09b8ec88dc3b7c46
+/.git/objects/b4/a758f2f8c8a18b851825e056e555c5620ae676
+/.git/objects/b6/90d19ac158bfa6e1ae11cef101f0d1a7434bd9
+/.git/objects/c3/fde00d07458f153bdb5082ceb011de8dcc9721
+/.git/objects/e2/3a8b692a016f63a83e1997a2326d3be18d8d1e
+/.git/objects/e5/f5f06b6f0fb91e529051f1cb6651cc60ce2f48
+/.git/objects/ea/e17d1788935d46b044cd7d9f12c93776847737
+/.git/objects/ee/6de65c1aa55a350e46ebe1d38ff8503d7bcaaf
+/.git/HEAD
+/.git/index
+/.git/config
+/.git/description
+/.git/packed-refs
+/.gitignore
+/readme.html
+/P05_KDTrees.iml
+
+--[ 2018.11.19.16.37.23.804.0 ]--
+InitFile: /src/Partition.java
+/**
+ * Partition is a simple class that stores two points and a direction,
+ * where the two points make up a partition along the given direction.
+ */
+public final class Partition {
+    // enumeration of all partition directions: Left-Right and Up-Down
+    public enum Direction {
+        LEFTRIGHT,
+        DOWNUP
+    }
+
+    // returns the next direction in the enumeration
+    public static Direction nextDirection(Direction dir) {
+        if(dir == Direction.LEFTRIGHT) return Direction.DOWNUP;
+        return Direction.LEFTRIGHT;
+    }
+
+    private final Point p0;
+    private final Point p1;
+    private final Direction dir;
+
+    public Partition(Point p0, Point p1, Direction dir) {
+        this.p0 = p0;
+        this.p1 = p1;
+        this.dir = dir;
+    }
+
+    public Partition(double x0, double y0, double x1, double y1, Direction dir) {
+        this.p0 = new Point(x0, y0);
+        this.p1 = new Point(x1, y1);
+        this.dir = dir;
+    }
+
+    public Point p0() { return p0; }
+
+    public Point p1() { return p1; }
+
+    public Direction dir() { return dir; }
+}
+
+--[ 2018.11.19.16.37.23.804.1 ]--
+InitFile: /P05_KDTrees.iml
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="algs4" level="project" />
+    <orderEntry type="library" name="stdlib" level="project" />
+  </component>
+</module>
+
+--[ 2018.11.19.16.37.23.804.2 ]--
+InitFile: /src/Visualizer.java
+import java.awt.*;
+
+/**
+ * Created by jdenning on 11/2/15.
+ */
+public class Visualizer {
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    // colors for vizualization
+    private static final Color cDot = new Color(64,64,64);      // point (small box)
+    private static final Color cKNN = new Color(200,200,255);   // k nearest neighbors
+    private static final Color cNN  = new Color(64,64,255);     // nearest neighbor
+    private static final Color cLR  = new Color(255,128,128);   // left-right partition
+    private static final Color cUD  = new Color(128,255,128);   // up-down partition
+    private static final Color cBox = new Color(192,192,192);   // bounding box
+
+    private static double offsetX = 0.0;
+    private static double offsetY = 0.0;
+    private static double scale = 1.0;
+
+    private static double dotSize = 1.0;
+
+    public static void setScale(double scale) { Visualizer.scale = scale; }
+    public static double getScale() { return Visualizer.scale; }
+    public static void setOffsetX(double offsetX) { Visualizer.offsetX = offsetX; };
+    public static double getOffsetX() { return Visualizer.offsetX; }
+    public static void setOffsetY(double offsetY) { Visualizer.offsetY = offsetY; };
+    public static double getOffsetY() { return Visualizer.offsetY; }
+    public static void setScaling(double minX, double minY, double maxX, double maxY) {
+        offsetX = minX; offsetY = minY;
+        double d = Math.max(maxX - minX, maxY - minY);
+        if(d == 0.0) scale = 0.0;
+        else scale = 1.0 / d;
+    }
+    public static void setScaling(Point min, Point max) {
+        if(min == null || max == null) return;
+        setScaling(min.x(), min.y(), max.x(), max.y());
+    }
+
+    public static double getDotSize() { return dotSize; }
+    public static void setDotSize(double dotSize) { Visualizer.dotSize = dotSize; }
+
+    public static void clear() {
+        StdDraw.clear();
+        StdDraw.setXscale(0, 512);
+        StdDraw.setYscale(0, 512);
+    }
+    public static void drawNeighbors(PointSearch ps, Point loc, boolean drawClosest, int k) {
+        if(ps.isEmpty()) return;
+
+        Iterable<Point> nearest = ps.nearest(loc, k);
+        if(nearest != null) {
+            StdDraw.setPenColor(cKNN);
+            for (Point p : nearest) drawLine(loc, p);
+        }
+
+        if(drawClosest) {
+            Point closest = ps.nearest(loc);
+            if (closest != null) {
+                StdDraw.setPenColor(cNN);
+                StdDraw.setPenRadius(0.005);
+                drawLine(loc, closest);
+                StdDraw.setPenRadius();
+            }
+        }
+    }
+    public static void drawKDTree(PointSearch ps, boolean drawPartitions, boolean drawBoundingBox) {
+        if(ps.isEmpty()) return;
+
+        if(drawBoundingBox) {
+            StdDraw.setPenColor(cBox);
+            drawBox(ps.min(), ps.max());
+        }
+
+        if(drawPartitions) {
+            Iterable<Partition> partitions = ps.partitions();
+            if(partitions != null) {
+                StdDraw.setPenRadius(0.005);
+                for (Partition p : partitions) {
+                    if (p.dir() == Partition.Direction.LEFTRIGHT) StdDraw.setPenColor(cLR);
+                    else StdDraw.setPenColor(cUD);
+                    drawLine(p.p0(), p.p1());
+                }
+                StdDraw.setPenRadius();
+            }
+        }
+
+        Iterable<Point> points = ps.points();
+        if(points != null) {
+            StdDraw.setPenColor(cDot);
+            setDotSize(Math.max(1.0, 5.0 / Math.pow(ps.size() + 1, 0.5)));
+            for (Point p : points) drawDot(p);
+        }
+    }
+
+    private static double xformX(double x) { return (x - offsetX) * scale; }
+    private static double xformY(double y) { return (y - offsetY) * scale; }
+    private static double xformInvX(double x) { return x / scale + offsetX; }
+    private static double xformInvY(double y) { return y / scale + offsetY; }
+    public static Point xform(Point p) {
+        return new Point(xformX(p.x()), xformY(p.y()));
+    }
+    public static Point xformInv(Point p) {
+        return new Point(xformInvX(p.x()), xformInvY(p.y()));
+    }
+
+
+    public static void drawDot(double x, double y) {
+        StdDraw.square(xformX(x) * 464 + 24, xformY(y) * 464 + 36, dotSize);
+    }
+    public static void drawDot(Point p) {
+        drawDot(p.x(), p.y());
+    }
+
+    public static void drawLine(double x0, double y0, double x1, double y1) {
+        StdDraw.line(
+                xformX(x0) * 464 + 24, xformY(y0) * 464 + 36,
+                xformX(x1) * 464 + 24, xformY(y1) * 464 + 36
+        );
+    }
+    public static void drawLine(Point p0, Point p1) {
+        drawLine(p0.x(), p0.y(), p1.x(), p1.y());
+    }
+
+    public static void drawBox(Point p0, Point p1) {
+        drawLine(p0.x(), p0.y(), p1.x(), p0.y());
+        drawLine(p1.x(), p0.y(), p1.x(), p1.y());
+        drawLine(p1.x(), p1.y(), p0.x(), p1.y());
+        drawLine(p0.x(), p1.y(), p0.x(), p0.y());
+    }
+
+}
+
+--[ 2018.11.19.16.37.23.804.3 ]--
+InitFile: /src/PSKDTree.java
+import java.util.Iterator;
+
+/**
+ * PSKDTree is a Point collection that provides nearest neighbor searching using
+ * 2d tree
+ */
+public class PSKDTree<Value> implements PointSearch<Value> {
+
+    private class Node {
+        Point p;
+        Value v;
+        Node left, right;
+        Partition.Direction dir;
+    }
+
+    // constructor makes empty kD-tree
+    public PSKDTree() { }
+
+    // add the given Point to kD-tree
+    public void put(Point p, Value v) {
+    }
+
+    public Value get(Point p) {
+        return null;
+    }
+
+    public boolean contains(Point p) {
+        return false;
+    }
+
+    public Value getNearest(Point p) {
+        return null;
+    }
+
+    // return an iterable of all points in collection
+    public Iterable<Point> points() { return null; }
+
+    // return an iterable of all partitions that make up the kD-tree
+    public Iterable<Partition> partitions() {
+        return null;
+    }
+
+    // return the Point that is closest to the given Point
+    public Point nearest(Point p) {
+        return null;
+    }
+
+    // return the k nearest Points to the given Point
+    public Iterable<Point> nearest(Point p, int k) {
+        return null;
+    }
+
+    // return the min and max for all Points in collection.
+    // The min-max pair will form a bounding box for all Points.
+    // if kD-tree is empty, return null.
+    public Point min() { return null; }
+    public Point max() { return null; }
+
+    // return the number of Points in kD-tree
+    public int size() { return 0; }
+
+    // return whether the kD-tree is empty
+    public boolean isEmpty() { return true; }
+
+    // place your timing code or unit testing here
+    public static void main(String[] args) {
+    }
+
+}
+
+--[ 2018.11.19.16.37.23.804.4 ]--
+InitFile: /src/Point.java
+import java.util.Comparator;
+
+/**
+ * Point is a simple tuple of doubles with some handy functions.  Point is useful for
+ * storing and computing 2D points.
+ */
+public final class Point implements Comparable<Point> {
+    private final double x;
+    private final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // generates a Point with location chosen uniformly at random in the unit square [0,1]^2
+    public static Point uniform() {
+        return new Point(StdRandom.uniform(), StdRandom.uniform());
+    }
+
+    // generates a Point with location chosen with gaussian distribution in unit square [0,1]^2
+    // with mean of 0.5 and stddev of 0.12
+    public static Point gaussian() {
+        double x = -1, y = -1;
+        // do not return an x,y that is outside the unit square
+        while(x < 0 || y < 0 || x > 1 || y > 1) {
+            x = StdRandom.gaussian(0.5, 0.12);
+            y = StdRandom.gaussian(0.5, 0.12);
+        }
+        return new Point(x, y);
+    }
+
+
+    /**
+     * the functions below can be used to find the min/max x/y which
+     * can be used to find the bounding box of points
+     */
+
+    // returns a point with minimum component values
+    public static Point min(Point p0, Point p1) {
+        return new Point(Math.min(p0.x, p1.x), Math.min(p0.y, p1.y));
+    }
+
+    // returns a point with maximum component values
+    public static Point max(Point p0, Point p1) {
+        return new Point(Math.max(p0.x, p1.x), Math.max(p0.y, p1.y));
+    }
+
+
+    /**
+     * use the following functions to compare Points in different ways.
+     * Points are Comparable, so they know how to compareTo one another,
+     * but the other functions return Comparator objects which can compare
+     * Points in different ways.
+     */
+
+    // compares this to that, first by y component then by x
+    public int compareTo(Point that) {
+        if(this.y < that.y) return -1;
+        if(this.y > that.y) return +1;
+        if(this.x < that.x) return -1;
+        if(this.x > that.x) return +1;
+        return 0;
+    }
+
+    // do the components of this equal the components of that?
+    public boolean equals(Object that) {
+        if(this == that) return true;
+        if(that == null) return false;
+        if(that.getClass() != this.getClass()) return false;
+        Point thatp = (Point)that;
+        if(Double.compare(this.x, thatp.x) != 0) return false;
+        if(Double.compare(this.y, thatp.y) != 0) return false;
+        return true;
+    }
+
+    // returns a Comparator, comparing x first then y
+    public static Comparator<Point> xyComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                if(o0.x < o1.x) return -1;
+                if(o0.x > o1.x) return +1;
+                if(o0.y < o1.y) return -1;
+                if(o0.y > o1.y) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator, comparing y fist then x
+    public static Comparator<Point> yxComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                if(o0.y < o1.y) return -1;
+                if(o0.y > o1.y) return +1;
+                if(o0.x < o1.x) return -1;
+                if(o0.x > o1.x) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator, comparing the polar radius (dist from (0,0))
+    public static Comparator<Point> polarRadiusComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                double d0 = (o0.x*o0.x + o0.y*o0.y);
+                double d1 = (o1.x*o1.x + o1.y*o1.y);
+                if(d0 < d1) return -1;
+                if(d0 > d1) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator for this, comparing dist between first given
+    // point and this and dist between second given point and this
+    public Comparator<Point> distanceToComparator() {
+        return new Comparator<Point>() {
+            private final double ox = x;
+            private final double oy = y;
+            @Override
+            public int compare(Point o0, Point o1) {
+                double d0 = (o0.x-ox)*(o0.x-ox) + (o0.y-oy)*(o0.y-oy);
+                double d1 = (o1.x-ox)*(o1.x-ox) + (o1.y-oy)*(o1.y-oy);
+                if(d0 < d1) return -1;
+                if(d0 > d1) return +1;
+                return 0;
+            }
+        };
+    }
+
+
+    /**
+     * getters and setters
+     */
+
+    // getters of x and y
+    public double x() { return x; }
+    public double y() { return y; }
+
+    // getter of either x or y depending on dir
+    // dir = LEFTRIGHT => returns x
+    // dir = DOWNUP    => returns y
+    public double xy(Partition.Direction dir) {
+        if(dir == Partition.Direction.LEFTRIGHT) return x;
+        else return y;
+    }
+
+
+    /**
+     * functions for computing distances
+     */
+
+    // computes distance^2 between this point and (x,y)
+    public double distSquared(double x, double y) {
+        return (this.x-x)*(this.x-x) + (this.y-y)*(this.y-y);
+    }
+
+    // computes distance^2 between this point and another (p)
+    public double distSquared(Point p) {
+        return distSquared(p.x, p.y);
+    }
+
+    // computes distance between this point and (x,y)
+    public double dist(double x, double y) {
+        return Math.sqrt(distSquared(x, y));
+    }
+
+    // computes distance between this point and another (p)
+    public double dist(Point p) {
+        return dist(p.x, p.y);
+    }
+
+
+    /**
+     * misc functions
+     */
+
+    // returns a new point that has values added to components
+    public Point add(double x, double y) {
+        return new Point(this.x + x, this.y + y);
+    }
+
+    // returns whether point is within given min and max bounds
+    public boolean isInBounds(double x0, double y0, double x1, double y1) {
+        if(Double.compare(x,x0) <= 0) return false;
+        if(Double.compare(y,y0) <= 0) return false;
+        if(Double.compare(x1,x) <= 0) return false;
+        if(Double.compare(y1,y) <= 0) return false;
+        return true;
+    }
+
+    // produces a String representation of Point
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
+}
+
+--[ 2018.11.19.16.37.23.804.5 ]--
+InitFile: /src/PointSearch.java
+/**
+ * This interface defines the basic API for a 2D symbol table
+ * where the keys are Points and the values are the generic
+ * type Value
+ */
+public interface PointSearch<Value> {
+    boolean isEmpty();
+    int size();
+
+    Point min();
+    Point max();
+
+    void put(Point p, Value v);
+    Iterable<Point> points();
+    boolean contains(Point p);
+    Value get(Point p);
+    Value getNearest(Point p);
+
+    Point nearest(Point p);
+    Iterable<Point> nearest(Point p, int k);
+
+    Iterable<Partition> partitions();
+}
+
+--[ 2018.11.19.16.37.23.804.6 ]--
+InitFile: /src/PSBruteForce.java
+import java.util.Iterator;
+
+/**
+ * PSBruteForce is a Point collection that provides brute force
+ * nearest neighbor searching using red-black tree.
+ */
+public class PSBruteForce<Value> implements PointSearch<Value> {
+    // constructor makes empty collection
+    private RedBlackBST<Point,Value> tree;
+    private MinPQ<PointDist> q;
+    private MinPQ<PointDist> pq;
+    private PointDist pd;
+    private double dist;
+
+    public PSBruteForce() {
+        tree = new RedBlackBST<>();
+
+    }
+
+    // add the given Point to KDTree
+    public void put(Point p, Value v) {
+        tree.put(p,v);
+    }
+    public Value get(Point p) {
+        return tree.get(p);
+    }
+    public boolean contains(Point p) {
+        return tree.contains(p);
+    }
+    // return an iterable of all points in collection
+    public Iterable<Point> points() {
+        return tree.keys();
+    }
+
+    // return the Point that is closest to the given Point
+    public Point nearest(Point p) {
+        pq = new MinPQ<>();
+        for (Point pt : this.points()) { // will be a linear search because we look through everything
+            dist = pt.dist(p.x(), p.y()); //the distance between Point p and the Point from the iterable of Points, pt
+            pd = new PointDist(pt, dist); // pt with a distance from p
+            pq.insert(pd);
+        }
+        if(pq.isEmpty()){
+            return null;
+        } else {
+            return pq.delMin().p(); //stack would be fine too - you just want all at once I think
+        }
+    }
+
+    // return the Value associated to the Point that is closest to the given Point
+    public Value getNearest(Point p) {
+        return tree.get(nearest(p));
+    }
+    // return the min and max for all Points in collection.
+    // The min-max pair will form a bounding box for all Points.
+    // if KDTree is empty, return null.
+    public Point min() { return tree.min(); }
+    public Point max() { return tree.max(); }
+
+    // return the k nearest Points to the given Point
+    public Iterable<Point> nearest(Point p, int k) {
+
+        // uses the points() method and returns the min
+        // PointDist.compareTo()
+        //Iterable<Point> maxPQ = new <>();
+        q = new MinPQ<>();
+
+        for (Point pt : this.points()) { // will be a linear search because we look through everything
+            dist = pt.dist(p.x(), p.y()); //the distance between Point p and the Point from the iterable of Points, pt
+            pd = new PointDist(pt, dist); // pt with a distance from p
+            q.insert(pd);
+
+        }
+
+        Stack<Point> s = new Stack<>();
+        while(s.size() < k) {
+           // System.out.printf("q.size: %d \n",s.size());
+            if(q.isEmpty()){return null;}
+            s.push(q.delMin().p());
+        }
+        if(s.isEmpty()){
+            return null;
+        } else {
+            return s; //stack would be fine too - you just want all at once I think*/
+        }
+
+    }
+
+    public Iterable<Partition> partitions() { return null; }
+
+    // return the number of Points in KDTree
+    public int size() { return tree.size(); }
+    // return whether the KDTree is empty
+    public boolean isEmpty() { return tree.isEmpty(); }
+
+    private void test(){
+
+    }
+
+    // place your timing code or unit testing here
+    public static void main(String[] args) {
+    }
+}
+
+--[ 2018.11.19.16.37.23.804.7 ]--
+InitFile: /.gitignore
+/tests/
+/.idea/
+/out/
+
+--[ 2018.11.19.16.37.23.820.0 ]--
+InitFile: /readme.html
+<meta charset="utf-8" lang="en">
+
+                    **P05_KDTrees**
+
+General
+========
+
+For each of your team's implementations, explain the following (where appropriate and applicable):
+
+- details on calling conventions, input and output data formats, limitations, bugs, and special features.
+- negative aspects of your program (limitations, known bugs)
+- positive aspects (extensions, special features)
+- describe your choice of modularization (abstractions), data structures, and algorithms
+- explain anything you did that is likely to be different from what other students may have done
+- justify any design decisions for which the rationale isn't immediately clear
+
+Feel free to modify the structure of this `readme.html` file to fit the current assignment and to fit how you wish to present your findings.
+
+
+
+Submission
+-----------
+
+Create a zip file that contains all of your code, this `readme.html` document, and any additional files of evidence (ex: screenshots, scenes).
+
+If helpful, use folders to divide up the subparts of your submission.
+
+
+
+Student Info
+=============
+
+Your name:
+
+Operating system:
+
+Lab computer or your own computer:
+
+Approx hours to complete assignment:
+
+Partner's name (if applicable):
+
+TA's or Tutor's name (if received help):
+
+Did you receive help from your instructor?
+
+
+
+Assignment Details
+===================
+
+
+Describe the `Node` data type you used to implement the 2d tree data structure.
+
+<!-- Details and screenshots here -->
+
+
+Describe your method for nearest neighbor search in a kd tree.
+
+<!-- Details and screenshots here -->
+
+
+Using the 64-bit memory cost model from the textbook and lecture, give the total memory usage in bytes of your 2d tree data structure as a function of the number of points $N$.
+Use tilde notation to simplify your answer (i.e., keep the leading coefficient and discard lower-order terms).
+Include the memory for all referenced objects (including `Node` and `Point` objects) except for `Value` objects (because the type is unknown and the object is owned by the client).
+Also, include the memory for all referenced objects, including any references to the `Direction` enum.
+
+bytes per `Point`:
+
+bytes per `PSKDTree` of $N$ points: $\sim N$
+
+<!-- Details and screenshots here -->
+
+
+How many nearest neighbor calculations can your brute-force implementation perform per second for `input100K.txt` (100,000 points) and `input1M.txt` (1 million points), where the query points are random points in the unit square?
+Explain how you determined the operations per second.
+(Do not count the time to read in the points from file or to build the data structure.)
+
+Repeat the question but with the 2d tree implementation.
+
+file            | brute force | 2d tree
+----------------|-------------|---------
+`input100K.txt` |         $0$ |     $0$
+`input1M.txt`   |         $0$ |     $0$
+
+<!-- Details and screenshots here -->
+
+
+
+Known bugs / limitations
+-------------------------
+
+<!-- Details and screenshots here -->
+
+
+Reflection
+===========
+
+Describe whatever help (if any) that you received.
+Don't include readings, lectures, but do include any help from people (including course staff, lab TAs, classmates, and friends)  and attribute them by name.
+
+<!-- Details and screenshots here -->
+
+
+Since this is an individual assignment, if you worked with a partner, assert below that the work you are turning in is your own work, and that you only did "whiteboard" work as a group.
+Give one sentence explaining what each of you contributed.
+If you used the code from the lab challenge, explain what is shared between you and your lab partner.
+
+<!-- Details and screenshots here -->
+
+
+
+Describe any serious problems you encountered.
+
+<!-- Details and screenshots here -->
+
+
+List any other comments here.
+Feel free to provide any feedback on how much you learned from doing the assignment, and whether you enjoyed doing it.
+
+<!-- Details and screenshots here -->
+
+
+
+
+
+<!--
+
+Leave the following, as this will format your text above to look nice in a wed browser.
+
+-->
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible");</script>
+
+--[ 2018.11.19.16.37.23.820.1 ]--
+InitFile: /src/FastFoodVisualizer.java
+import java.awt.*;
+
+/**
+ * Loads and visualizes location data, and reports information on the closest
+ * data point to mouse cursor
+ */
+public class FastFoodVisualizer {
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    private static final Color cText = new Color(64,64,64);
+
+    private static void parseCSVLine(String line, String[] data) {
+        boolean inQuote = false;
+        int s = -1;
+        int j = 0;
+        for(int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if(c == ',' && !inQuote) {
+                if(line.charAt(s+1) == '"' && line.charAt(i-1) == '"') {
+                    data[j] = line.substring(s+2,i-1);
+                } else {
+                    data[j] = line.substring(s + 1, i);
+                }
+                j++;
+                s = i;
+                continue;
+            }
+            if(c=='"') {
+                inQuote = !inQuote;
+            }
+        }
+        int i = line.length();
+        if(s < i) {
+            if(line.charAt(s+1) == '"' && line.charAt(i-1) == '"') {
+                data[j] = line.substring(s+2,i-1);
+            } else {
+                data[j] = line.substring(s + 1, i);
+            }
+        }
+    }
+
+    private static String[][] readCSV(String filename, int m) {
+        String[] lines = (new In(filename)).readAllLines();
+        int n = lines.length;
+        String[][] a = new String[n][m];
+        for(int i = 0; i < n; i++) parseCSVLine(lines[i], a[i]);
+        return a;
+    }
+
+    private static void insertCSV(String filename, PointSearch<String[]> ps) {
+        String[][] data = readCSV(filename, 4);
+        for(int i = 0; i < data.length; i++) {
+            double longitude = Double.parseDouble(data[i][0]);
+            double latitude = Double.parseDouble(data[i][1]);
+            String[] loc = {data[i][2], data[i][3]};
+            ps.put(new Point(longitude, latitude), loc);
+        }
+    }
+
+    public static void main(String[] args) {
+        PointSearch<String[]> psBurgerKings = new PSKDTree<>();
+
+        insertCSV("burgerking.csv", psBurgerKings);
+
+        Visualizer.setScaling(psBurgerKings.min(), psBurgerKings.max());
+
+        StdDraw.show(0);
+
+        Mouse mouse = new Mouse(24, 36, 464, 464);
+
+        while(true) {
+            Point loc = Visualizer.xformInv(mouse.getLocation());
+
+            Visualizer.clear();
+            Visualizer.drawKDTree(psBurgerKings, false, false);
+            Visualizer.drawNeighbors(psBurgerKings, loc, true, 0);
+
+            StdDraw.setPenColor(cText);
+            int i = 464;
+            String[] value = psBurgerKings.getNearest(loc);
+            if(value != null) {
+                for (String l : value) {
+                    StdDraw.text(256, i, l);
+                    i -= 16;
+                }
+            }
+
+            StdDraw.show(DELAY);
+        }
+
+
+    }
+}
+
+--[ 2018.11.19.16.37.23.820.2 ]--
+InitFile: /src/KeyPress.java
+/**
+ * KeyPress is a helper class for detecting key presses (not just whether the key is pressed)
+ */
+public class KeyPress {
+    private final int key;
+    private boolean pressed;
+
+    public KeyPress(int key) {
+        this.key = key;
+    }
+
+    public boolean isDown() {
+        return StdDraw.isKeyPressed(this.key);
+    }
+
+    public boolean isUp() {
+        return !isDown();
+    }
+
+    public boolean isPressed() {
+        boolean p = StdDraw.isKeyPressed(this.key);
+        boolean v = !pressed && p;
+        pressed = p;
+        return v;
+    }
+}
+
+--[ 2018.11.19.16.37.23.820.3 ]--
+InitFile: /src/PointDist.java
+/**
+ * PointDist is a simple tuple of a Point and a dist.
+ * This class is helpful for storing, passing, or returning the pair.
+ */
+public final class PointDist implements Comparable<PointDist> {
+    private final Point p;
+    private final double d;
+
+    public PointDist(Point p, double d) {
+        this.p = p;
+        this.d = d;
+    }
+
+    public Point p() { return p; }
+
+    public double d() { return d; }
+
+    public int compareTo(PointDist that) {
+        return Double.compare(this.d, that.d);
+    }
+}
+
+--[ 2018.11.19.16.37.23.820.4 ]--
+InitFile: /src/Mouse.java
+/**
+ * Mouse is a helper class for detecting mouse presses (not just whether the mouse is pressed)
+ * and for transforming the cursor location from window-space to program-space
+ */
+public class Mouse {
+    private boolean pressed;
+    private final int xOffset, yOffset, width, height;
+
+    public Mouse(int xOffset, int yOffset, int width, int height) {
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.width = width;
+        this.height = height;
+    }
+
+    public boolean isPressed() {
+        boolean p = StdDraw.mousePressed();
+        boolean v = !pressed && p;
+        pressed = p;
+        return v;
+    }
+
+    public Point getLocation() {
+        double mouseX = (StdDraw.mouseX() - (float)xOffset) / (float)width;
+        double mouseY = (StdDraw.mouseY() - (float)yOffset) / (float)height;
+        return new Point(mouseX, mouseY);
+    }
+}
+
+--[ 2018.11.19.16.37.23.820.5 ]--
+InitFile: /src/NearestNeighborVisualizer.java
+import java.awt.event.KeyEvent;
+
+/**
+ * Visualizes nearest neighbors to mouse cursor and partitioning data
+ */
+public class NearestNeighborVisualizer {
+
+    // number of dots to add at start
+    private final static int nGaussian = 100;
+    private final static int nUniform  = 100;
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    // creates a new PointSearch data structure
+    // note: you can swap between PSKDTree and PSBruteForce to debug your code
+    private static PointSearch<Character> createNewPS() {
+        return new PSKDTree<>();
+    }
+
+    public static void main(String[] args) {
+        PointSearch<Character> ps = createNewPS();
+
+        // add some random points
+        for(int i = 0; i < nGaussian; i++) ps.put(Point.gaussian(), 'g');
+        for(int i = 0; i < nUniform; i++) ps.put(Point.uniform(), 'u');
+
+        // add points to match assignment write-up
+        /*
+        ps.put(new Point(0.8, 0.9), 'A');
+        ps.put(new Point(0.5, 0.4), 'B');
+        ps.put(new Point(0.2, 0.6), 'C');
+        ps.put(new Point(0.3, 0.1), 'D');
+        ps.put(new Point(0.9, 0.4), 'E');
+        */
+
+        StdDraw.show(0);
+
+        int k = 10;
+        boolean drawClosest = true;
+        boolean drawPartitions = false;
+        boolean drawBoundingBox = false;
+
+        KeyPress keyP    = new KeyPress(KeyEvent.VK_P);
+        KeyPress keyUp   = new KeyPress(KeyEvent.VK_UP);
+        KeyPress keyDown = new KeyPress(KeyEvent.VK_DOWN);
+        KeyPress keyC    = new KeyPress(KeyEvent.VK_C);
+        KeyPress keyN    = new KeyPress(KeyEvent.VK_N);
+        KeyPress keyB    = new KeyPress(KeyEvent.VK_B);
+        Mouse    mouse   = new Mouse(24, 36, 464, 464);
+
+        while(true) {
+            Point loc = mouse.getLocation();
+
+            if(keyC.isPressed()) ps = createNewPS();
+            if(keyUp.isPressed()) k++;
+            if(keyDown.isPressed() && k > 0) k--;
+            if(keyN.isPressed()) drawClosest = !drawClosest;
+            if(keyP.isPressed()) drawPartitions = !drawPartitions;
+            if(keyB.isPressed()) drawBoundingBox = !drawBoundingBox;
+            if(mouse.isPressed()) ps.put(loc, 'm');
+
+            Visualizer.clear();
+            Visualizer.drawKDTree(ps, drawPartitions, drawBoundingBox);
+            Visualizer.drawNeighbors(ps, loc, drawClosest, k);
+
+            StdDraw.show(DELAY);
+        }
+    }
+}
+
+--[ 2018.11.19.16.37.24.429.0 ]--
+UpdateTree (AD): 3 0
++ /.log/history.log
++ /.idea/modules.xml
++ /.idea/P05_KDTrees.iml
+
+--[ 2018.11.19.16.38.16.183.0 ]--
+UpdateTree (AD): 1 0
++ /.idea/misc.xml
+
+--[ 2018.11.19.16.38.16.276.0 ]--
+UpdateTree (AD): 1 0
++ /.idea/vcs.xml
+
+--[ 2018.11.19.16.38.16.323.0 ]--
+UpdateTree (AD): 1 0
++ /.idea/workspace.xml
+
+--[ 2018.11.19.16.44.54.794.0 ]--
+UpdateTree (AD): 6 0
++ /.idea/copyright/profiles_settings.xml
++ /.idea/libraries/algs4.xml
++ /.idea/libraries/stdlib.xml
++ /.idea/.name
++ /.idea/compiler.xml
++ /.idea/uiDesigner.xml
+
+--[ 2018.11.19.16.44.59.574.0 ]--
+DisposeComponent
+--[ 2018.11.19.16.44.59.713.0 ]--
+NewLogger: P05_KDTrees
+Version: 1.2
+--[ 2018.11.19.16.44.59.733.0 ]--
+InitTree:
+/src/algs4.jar
+/src/Mouse.java
+/src/Point.java
+/src/stdlib.jar
+/src/KeyPress.java
+/src/PSKDTree.java
+/src/Partition.java
+/src/PointDist.java
+/src/Visualizer.java
+/src/PointSearch.java
+/src/PSBruteForce.java
+/src/FastFoodVisualizer.java
+/src/NearestNeighborVisualizer.java
+/.git/info/exclude
+/.git/logs/refs/heads/master
+/.git/logs/refs/remotes/origin/HEAD
+/.git/logs/HEAD
+/.git/refs/heads/master
+/.git/refs/remotes/origin/HEAD
+/.git/hooks/update.sample
+/.git/hooks/pre-push.sample
+/.git/hooks/commit-msg.sample
+/.git/hooks/pre-commit.sample
+/.git/hooks/pre-rebase.sample
+/.git/hooks/post-update.sample
+/.git/hooks/pre-receive.sample
+/.git/hooks/applypatch-msg.sample
+/.git/hooks/pre-applypatch.sample
+/.git/hooks/fsmonitor-watchman.sample
+/.git/hooks/prepare-commit-msg.sample
+/.git/objects/01/6dc5ddfef5b3957b300c3084667ad162a308fb
+/.git/objects/03/0fdffe7ad2b4fa7ffba4b445b357bb11815f10
+/.git/objects/05/054a55af449d7a3d22569a0d9278837d3116b7
+/.git/objects/05/aa0754159021ad4bb196249ebed23fcaee0f05
+/.git/objects/20/cc877669b4582f0ca99f8069928c89b7eba068
+/.git/objects/34/c40469b8879baee4fbd8d7ee3c930ed59cb6f3
+/.git/objects/49/554703073ae63a7122c05b80a894ac3ff48370
+/.git/objects/4d/3b7e9b600cf8616e1c3bb9adb4340e06674e20
+/.git/objects/5d/ba5bf5a0f3132828af66511a85e1412816ef5f
+/.git/objects/8c/333a97e7dbd1f8d32d947ad097e8e247f9f041
+/.git/objects/91/4c3a82a059ff11e1e2248c3ee1ce32a78bc63a
+/.git/objects/9c/780ff1eacdac600ca19795de4e5f1220a1bf3e
+/.git/objects/aa/13cb9b967d67b0a39e56e35946ed7b7627f5c5
+/.git/objects/aa/d3f0402094e10cd99e06ba2a544a57396b1919
+/.git/objects/b0/d850e715a6f640b0a3256d04a1ad59f48c464e
+/.git/objects/b1/a69ba0a6fc553f8d7c316c09b8ec88dc3b7c46
+/.git/objects/b4/a758f2f8c8a18b851825e056e555c5620ae676
+/.git/objects/b6/90d19ac158bfa6e1ae11cef101f0d1a7434bd9
+/.git/objects/c3/fde00d07458f153bdb5082ceb011de8dcc9721
+/.git/objects/e2/3a8b692a016f63a83e1997a2326d3be18d8d1e
+/.git/objects/e5/f5f06b6f0fb91e529051f1cb6651cc60ce2f48
+/.git/objects/ea/e17d1788935d46b044cd7d9f12c93776847737
+/.git/objects/ee/6de65c1aa55a350e46ebe1d38ff8503d7bcaaf
+/.git/HEAD
+/.git/index
+/.git/config
+/.git/description
+/.git/packed-refs
+/.log/history.log
+/.idea/copyright/profiles_settings.xml
+/.idea/libraries/algs4.xml
+/.idea/libraries/stdlib.xml
+/.idea/.name
+/.idea/vcs.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/compiler.xml
+/.idea/workspace.xml
+/.idea/uiDesigner.xml
+/.idea/P05_KDTrees.iml
+/.gitignore
+/readme.html
+/P05_KDTrees.iml
+
+--[ 2018.11.19.16.44.59.739.0 ]--
+InitFile: /src/Partition.java
+/**
+ * Partition is a simple class that stores two points and a direction,
+ * where the two points make up a partition along the given direction.
+ */
+public final class Partition {
+    // enumeration of all partition directions: Left-Right and Up-Down
+    public enum Direction {
+        LEFTRIGHT,
+        DOWNUP
+    }
+
+    // returns the next direction in the enumeration
+    public static Direction nextDirection(Direction dir) {
+        if(dir == Direction.LEFTRIGHT) return Direction.DOWNUP;
+        return Direction.LEFTRIGHT;
+    }
+
+    private final Point p0;
+    private final Point p1;
+    private final Direction dir;
+
+    public Partition(Point p0, Point p1, Direction dir) {
+        this.p0 = p0;
+        this.p1 = p1;
+        this.dir = dir;
+    }
+
+    public Partition(double x0, double y0, double x1, double y1, Direction dir) {
+        this.p0 = new Point(x0, y0);
+        this.p1 = new Point(x1, y1);
+        this.dir = dir;
+    }
+
+    public Point p0() { return p0; }
+
+    public Point p1() { return p1; }
+
+    public Direction dir() { return dir; }
+}
+
+--[ 2018.11.19.16.44.59.744.0 ]--
+InitFile: /P05_KDTrees.iml
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="algs4" level="project" />
+    <orderEntry type="library" name="stdlib" level="project" />
+  </component>
+</module>
+
+--[ 2018.11.19.16.44.59.747.0 ]--
+InitFile: /src/Visualizer.java
+import java.awt.*;
+
+/**
+ * Created by jdenning on 11/2/15.
+ */
+public class Visualizer {
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    // colors for vizualization
+    private static final Color cDot = new Color(64,64,64);      // point (small box)
+    private static final Color cKNN = new Color(200,200,255);   // k nearest neighbors
+    private static final Color cNN  = new Color(64,64,255);     // nearest neighbor
+    private static final Color cLR  = new Color(255,128,128);   // left-right partition
+    private static final Color cUD  = new Color(128,255,128);   // up-down partition
+    private static final Color cBox = new Color(192,192,192);   // bounding box
+
+    private static double offsetX = 0.0;
+    private static double offsetY = 0.0;
+    private static double scale = 1.0;
+
+    private static double dotSize = 1.0;
+
+    public static void setScale(double scale) { Visualizer.scale = scale; }
+    public static double getScale() { return Visualizer.scale; }
+    public static void setOffsetX(double offsetX) { Visualizer.offsetX = offsetX; };
+    public static double getOffsetX() { return Visualizer.offsetX; }
+    public static void setOffsetY(double offsetY) { Visualizer.offsetY = offsetY; };
+    public static double getOffsetY() { return Visualizer.offsetY; }
+    public static void setScaling(double minX, double minY, double maxX, double maxY) {
+        offsetX = minX; offsetY = minY;
+        double d = Math.max(maxX - minX, maxY - minY);
+        if(d == 0.0) scale = 0.0;
+        else scale = 1.0 / d;
+    }
+    public static void setScaling(Point min, Point max) {
+        if(min == null || max == null) return;
+        setScaling(min.x(), min.y(), max.x(), max.y());
+    }
+
+    public static double getDotSize() { return dotSize; }
+    public static void setDotSize(double dotSize) { Visualizer.dotSize = dotSize; }
+
+    public static void clear() {
+        StdDraw.clear();
+        StdDraw.setXscale(0, 512);
+        StdDraw.setYscale(0, 512);
+    }
+    public static void drawNeighbors(PointSearch ps, Point loc, boolean drawClosest, int k) {
+        if(ps.isEmpty()) return;
+
+        Iterable<Point> nearest = ps.nearest(loc, k);
+        if(nearest != null) {
+            StdDraw.setPenColor(cKNN);
+            for (Point p : nearest) drawLine(loc, p);
+        }
+
+        if(drawClosest) {
+            Point closest = ps.nearest(loc);
+            if (closest != null) {
+                StdDraw.setPenColor(cNN);
+                StdDraw.setPenRadius(0.005);
+                drawLine(loc, closest);
+                StdDraw.setPenRadius();
+            }
+        }
+    }
+    public static void drawKDTree(PointSearch ps, boolean drawPartitions, boolean drawBoundingBox) {
+        if(ps.isEmpty()) return;
+
+        if(drawBoundingBox) {
+            StdDraw.setPenColor(cBox);
+            drawBox(ps.min(), ps.max());
+        }
+
+        if(drawPartitions) {
+            Iterable<Partition> partitions = ps.partitions();
+            if(partitions != null) {
+                StdDraw.setPenRadius(0.005);
+                for (Partition p : partitions) {
+                    if (p.dir() == Partition.Direction.LEFTRIGHT) StdDraw.setPenColor(cLR);
+                    else StdDraw.setPenColor(cUD);
+                    drawLine(p.p0(), p.p1());
+                }
+                StdDraw.setPenRadius();
+            }
+        }
+
+        Iterable<Point> points = ps.points();
+        if(points != null) {
+            StdDraw.setPenColor(cDot);
+            setDotSize(Math.max(1.0, 5.0 / Math.pow(ps.size() + 1, 0.5)));
+            for (Point p : points) drawDot(p);
+        }
+    }
+
+    private static double xformX(double x) { return (x - offsetX) * scale; }
+    private static double xformY(double y) { return (y - offsetY) * scale; }
+    private static double xformInvX(double x) { return x / scale + offsetX; }
+    private static double xformInvY(double y) { return y / scale + offsetY; }
+    public static Point xform(Point p) {
+        return new Point(xformX(p.x()), xformY(p.y()));
+    }
+    public static Point xformInv(Point p) {
+        return new Point(xformInvX(p.x()), xformInvY(p.y()));
+    }
+
+
+    public static void drawDot(double x, double y) {
+        StdDraw.square(xformX(x) * 464 + 24, xformY(y) * 464 + 36, dotSize);
+    }
+    public static void drawDot(Point p) {
+        drawDot(p.x(), p.y());
+    }
+
+    public static void drawLine(double x0, double y0, double x1, double y1) {
+        StdDraw.line(
+                xformX(x0) * 464 + 24, xformY(y0) * 464 + 36,
+                xformX(x1) * 464 + 24, xformY(y1) * 464 + 36
+        );
+    }
+    public static void drawLine(Point p0, Point p1) {
+        drawLine(p0.x(), p0.y(), p1.x(), p1.y());
+    }
+
+    public static void drawBox(Point p0, Point p1) {
+        drawLine(p0.x(), p0.y(), p1.x(), p0.y());
+        drawLine(p1.x(), p0.y(), p1.x(), p1.y());
+        drawLine(p1.x(), p1.y(), p0.x(), p1.y());
+        drawLine(p0.x(), p1.y(), p0.x(), p0.y());
+    }
+
+}
+
+--[ 2018.11.19.16.44.59.751.0 ]--
+InitFile: /src/PSKDTree.java
+import java.util.Iterator;
+
+/**
+ * PSKDTree is a Point collection that provides nearest neighbor searching using
+ * 2d tree
+ */
+public class PSKDTree<Value> implements PointSearch<Value> {
+
+    private class Node {
+        Point p;
+        Value v;
+        Node left, right;
+        Partition.Direction dir;
+    }
+
+    // constructor makes empty kD-tree
+    public PSKDTree() { }
+
+    // add the given Point to kD-tree
+    public void put(Point p, Value v) {
+    }
+
+    public Value get(Point p) {
+        return null;
+    }
+
+    public boolean contains(Point p) {
+        return false;
+    }
+
+    public Value getNearest(Point p) {
+        return null;
+    }
+
+    // return an iterable of all points in collection
+    public Iterable<Point> points() { return null; }
+
+    // return an iterable of all partitions that make up the kD-tree
+    public Iterable<Partition> partitions() {
+        return null;
+    }
+
+    // return the Point that is closest to the given Point
+    public Point nearest(Point p) {
+        return null;
+    }
+
+    // return the k nearest Points to the given Point
+    public Iterable<Point> nearest(Point p, int k) {
+        return null;
+    }
+
+    // return the min and max for all Points in collection.
+    // The min-max pair will form a bounding box for all Points.
+    // if kD-tree is empty, return null.
+    public Point min() { return null; }
+    public Point max() { return null; }
+
+    // return the number of Points in kD-tree
+    public int size() { return 0; }
+
+    // return whether the kD-tree is empty
+    public boolean isEmpty() { return true; }
+
+    // place your timing code or unit testing here
+    public static void main(String[] args) {
+    }
+
+}
+
+--[ 2018.11.19.16.44.59.754.0 ]--
+InitFile: /src/Point.java
+import java.util.Comparator;
+
+/**
+ * Point is a simple tuple of doubles with some handy functions.  Point is useful for
+ * storing and computing 2D points.
+ */
+public final class Point implements Comparable<Point> {
+    private final double x;
+    private final double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // generates a Point with location chosen uniformly at random in the unit square [0,1]^2
+    public static Point uniform() {
+        return new Point(StdRandom.uniform(), StdRandom.uniform());
+    }
+
+    // generates a Point with location chosen with gaussian distribution in unit square [0,1]^2
+    // with mean of 0.5 and stddev of 0.12
+    public static Point gaussian() {
+        double x = -1, y = -1;
+        // do not return an x,y that is outside the unit square
+        while(x < 0 || y < 0 || x > 1 || y > 1) {
+            x = StdRandom.gaussian(0.5, 0.12);
+            y = StdRandom.gaussian(0.5, 0.12);
+        }
+        return new Point(x, y);
+    }
+
+
+    /**
+     * the functions below can be used to find the min/max x/y which
+     * can be used to find the bounding box of points
+     */
+
+    // returns a point with minimum component values
+    public static Point min(Point p0, Point p1) {
+        return new Point(Math.min(p0.x, p1.x), Math.min(p0.y, p1.y));
+    }
+
+    // returns a point with maximum component values
+    public static Point max(Point p0, Point p1) {
+        return new Point(Math.max(p0.x, p1.x), Math.max(p0.y, p1.y));
+    }
+
+
+    /**
+     * use the following functions to compare Points in different ways.
+     * Points are Comparable, so they know how to compareTo one another,
+     * but the other functions return Comparator objects which can compare
+     * Points in different ways.
+     */
+
+    // compares this to that, first by y component then by x
+    public int compareTo(Point that) {
+        if(this.y < that.y) return -1;
+        if(this.y > that.y) return +1;
+        if(this.x < that.x) return -1;
+        if(this.x > that.x) return +1;
+        return 0;
+    }
+
+    // do the components of this equal the components of that?
+    public boolean equals(Object that) {
+        if(this == that) return true;
+        if(that == null) return false;
+        if(that.getClass() != this.getClass()) return false;
+        Point thatp = (Point)that;
+        if(Double.compare(this.x, thatp.x) != 0) return false;
+        if(Double.compare(this.y, thatp.y) != 0) return false;
+        return true;
+    }
+
+    // returns a Comparator, comparing x first then y
+    public static Comparator<Point> xyComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                if(o0.x < o1.x) return -1;
+                if(o0.x > o1.x) return +1;
+                if(o0.y < o1.y) return -1;
+                if(o0.y > o1.y) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator, comparing y fist then x
+    public static Comparator<Point> yxComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                if(o0.y < o1.y) return -1;
+                if(o0.y > o1.y) return +1;
+                if(o0.x < o1.x) return -1;
+                if(o0.x > o1.x) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator, comparing the polar radius (dist from (0,0))
+    public static Comparator<Point> polarRadiusComparator() {
+        return new Comparator<Point>() {
+            @Override
+            public int compare(Point o0, Point o1) {
+                double d0 = (o0.x*o0.x + o0.y*o0.y);
+                double d1 = (o1.x*o1.x + o1.y*o1.y);
+                if(d0 < d1) return -1;
+                if(d0 > d1) return +1;
+                return 0;
+            }
+        };
+    }
+
+    // returns a Comparator for this, comparing dist between first given
+    // point and this and dist between second given point and this
+    public Comparator<Point> distanceToComparator() {
+        return new Comparator<Point>() {
+            private final double ox = x;
+            private final double oy = y;
+            @Override
+            public int compare(Point o0, Point o1) {
+                double d0 = (o0.x-ox)*(o0.x-ox) + (o0.y-oy)*(o0.y-oy);
+                double d1 = (o1.x-ox)*(o1.x-ox) + (o1.y-oy)*(o1.y-oy);
+                if(d0 < d1) return -1;
+                if(d0 > d1) return +1;
+                return 0;
+            }
+        };
+    }
+
+
+    /**
+     * getters and setters
+     */
+
+    // getters of x and y
+    public double x() { return x; }
+    public double y() { return y; }
+
+    // getter of either x or y depending on dir
+    // dir = LEFTRIGHT => returns x
+    // dir = DOWNUP    => returns y
+    public double xy(Partition.Direction dir) {
+        if(dir == Partition.Direction.LEFTRIGHT) return x;
+        else return y;
+    }
+
+
+    /**
+     * functions for computing distances
+     */
+
+    // computes distance^2 between this point and (x,y)
+    public double distSquared(double x, double y) {
+        return (this.x-x)*(this.x-x) + (this.y-y)*(this.y-y);
+    }
+
+    // computes distance^2 between this point and another (p)
+    public double distSquared(Point p) {
+        return distSquared(p.x, p.y);
+    }
+
+    // computes distance between this point and (x,y)
+    public double dist(double x, double y) {
+        return Math.sqrt(distSquared(x, y));
+    }
+
+    // computes distance between this point and another (p)
+    public double dist(Point p) {
+        return dist(p.x, p.y);
+    }
+
+
+    /**
+     * misc functions
+     */
+
+    // returns a new point that has values added to components
+    public Point add(double x, double y) {
+        return new Point(this.x + x, this.y + y);
+    }
+
+    // returns whether point is within given min and max bounds
+    public boolean isInBounds(double x0, double y0, double x1, double y1) {
+        if(Double.compare(x,x0) <= 0) return false;
+        if(Double.compare(y,y0) <= 0) return false;
+        if(Double.compare(x1,x) <= 0) return false;
+        if(Double.compare(y1,y) <= 0) return false;
+        return true;
+    }
+
+    // produces a String representation of Point
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
+}
+
+--[ 2018.11.19.16.44.59.757.0 ]--
+InitFile: /src/PointSearch.java
+/**
+ * This interface defines the basic API for a 2D symbol table
+ * where the keys are Points and the values are the generic
+ * type Value
+ */
+public interface PointSearch<Value> {
+    boolean isEmpty();
+    int size();
+
+    Point min();
+    Point max();
+
+    void put(Point p, Value v);
+    Iterable<Point> points();
+    boolean contains(Point p);
+    Value get(Point p);
+    Value getNearest(Point p);
+
+    Point nearest(Point p);
+    Iterable<Point> nearest(Point p, int k);
+
+    Iterable<Partition> partitions();
+}
+
+--[ 2018.11.19.16.44.59.772.0 ]--
+InitFile: /src/PSBruteForce.java
+import java.util.Iterator;
+
+/**
+ * PSBruteForce is a Point collection that provides brute force
+ * nearest neighbor searching using red-black tree.
+ */
+public class PSBruteForce<Value> implements PointSearch<Value> {
+    // constructor makes empty collection
+    private RedBlackBST<Point,Value> tree;
+    private MinPQ<PointDist> q;
+    private MinPQ<PointDist> pq;
+    private PointDist pd;
+    private double dist;
+
+    public PSBruteForce() {
+        tree = new RedBlackBST<>();
+
+    }
+
+    // add the given Point to KDTree
+    public void put(Point p, Value v) {
+        tree.put(p,v);
+    }
+    public Value get(Point p) {
+        return tree.get(p);
+    }
+    public boolean contains(Point p) {
+        return tree.contains(p);
+    }
+    // return an iterable of all points in collection
+    public Iterable<Point> points() {
+        return tree.keys();
+    }
+
+    // return the Point that is closest to the given Point
+    public Point nearest(Point p) {
+        pq = new MinPQ<>();
+        for (Point pt : this.points()) { // will be a linear search because we look through everything
+            dist = pt.dist(p.x(), p.y()); //the distance between Point p and the Point from the iterable of Points, pt
+            pd = new PointDist(pt, dist); // pt with a distance from p
+            pq.insert(pd);
+        }
+        if(pq.isEmpty()){
+            return null;
+        } else {
+            return pq.delMin().p(); //stack would be fine too - you just want all at once I think
+        }
+    }
+
+    // return the Value associated to the Point that is closest to the given Point
+    public Value getNearest(Point p) {
+        return tree.get(nearest(p));
+    }
+    // return the min and max for all Points in collection.
+    // The min-max pair will form a bounding box for all Points.
+    // if KDTree is empty, return null.
+    public Point min() { return tree.min(); }
+    public Point max() { return tree.max(); }
+
+    // return the k nearest Points to the given Point
+    public Iterable<Point> nearest(Point p, int k) {
+
+        // uses the points() method and returns the min
+        // PointDist.compareTo()
+        //Iterable<Point> maxPQ = new <>();
+        q = new MinPQ<>();
+
+        for (Point pt : this.points()) { // will be a linear search because we look through everything
+            dist = pt.dist(p.x(), p.y()); //the distance between Point p and the Point from the iterable of Points, pt
+            pd = new PointDist(pt, dist); // pt with a distance from p
+            q.insert(pd);
+
+        }
+
+        Stack<Point> s = new Stack<>();
+        while(s.size() < k) {
+           // System.out.printf("q.size: %d \n",s.size());
+            if(q.isEmpty()){return null;}
+            s.push(q.delMin().p());
+        }
+        if(s.isEmpty()){
+            return null;
+        } else {
+            return s; //stack would be fine too - you just want all at once I think*/
+        }
+
+    }
+
+    public Iterable<Partition> partitions() { return null; }
+
+    // return the number of Points in KDTree
+    public int size() { return tree.size(); }
+    // return whether the KDTree is empty
+    public boolean isEmpty() { return tree.isEmpty(); }
+
+    private void test(){
+
+    }
+
+    // place your timing code or unit testing here
+    public static void main(String[] args) {
+    }
+}
+
+--[ 2018.11.19.16.44.59.775.0 ]--
+InitFile: /.gitignore
+/tests/
+/.idea/
+/out/
+
+--[ 2018.11.19.16.44.59.777.0 ]--
+InitFile: /readme.html
+<meta charset="utf-8" lang="en">
+
+                    **P05_KDTrees**
+
+General
+========
+
+For each of your team's implementations, explain the following (where appropriate and applicable):
+
+- details on calling conventions, input and output data formats, limitations, bugs, and special features.
+- negative aspects of your program (limitations, known bugs)
+- positive aspects (extensions, special features)
+- describe your choice of modularization (abstractions), data structures, and algorithms
+- explain anything you did that is likely to be different from what other students may have done
+- justify any design decisions for which the rationale isn't immediately clear
+
+Feel free to modify the structure of this `readme.html` file to fit the current assignment and to fit how you wish to present your findings.
+
+
+
+Submission
+-----------
+
+Create a zip file that contains all of your code, this `readme.html` document, and any additional files of evidence (ex: screenshots, scenes).
+
+If helpful, use folders to divide up the subparts of your submission.
+
+
+
+Student Info
+=============
+
+Your name:
+
+Operating system:
+
+Lab computer or your own computer:
+
+Approx hours to complete assignment:
+
+Partner's name (if applicable):
+
+TA's or Tutor's name (if received help):
+
+Did you receive help from your instructor?
+
+
+
+Assignment Details
+===================
+
+
+Describe the `Node` data type you used to implement the 2d tree data structure.
+
+<!-- Details and screenshots here -->
+
+
+Describe your method for nearest neighbor search in a kd tree.
+
+<!-- Details and screenshots here -->
+
+
+Using the 64-bit memory cost model from the textbook and lecture, give the total memory usage in bytes of your 2d tree data structure as a function of the number of points $N$.
+Use tilde notation to simplify your answer (i.e., keep the leading coefficient and discard lower-order terms).
+Include the memory for all referenced objects (including `Node` and `Point` objects) except for `Value` objects (because the type is unknown and the object is owned by the client).
+Also, include the memory for all referenced objects, including any references to the `Direction` enum.
+
+bytes per `Point`:
+
+bytes per `PSKDTree` of $N$ points: $\sim N$
+
+<!-- Details and screenshots here -->
+
+
+How many nearest neighbor calculations can your brute-force implementation perform per second for `input100K.txt` (100,000 points) and `input1M.txt` (1 million points), where the query points are random points in the unit square?
+Explain how you determined the operations per second.
+(Do not count the time to read in the points from file or to build the data structure.)
+
+Repeat the question but with the 2d tree implementation.
+
+file            | brute force | 2d tree
+----------------|-------------|---------
+`input100K.txt` |         $0$ |     $0$
+`input1M.txt`   |         $0$ |     $0$
+
+<!-- Details and screenshots here -->
+
+
+
+Known bugs / limitations
+-------------------------
+
+<!-- Details and screenshots here -->
+
+
+Reflection
+===========
+
+Describe whatever help (if any) that you received.
+Don't include readings, lectures, but do include any help from people (including course staff, lab TAs, classmates, and friends)  and attribute them by name.
+
+<!-- Details and screenshots here -->
+
+
+Since this is an individual assignment, if you worked with a partner, assert below that the work you are turning in is your own work, and that you only did "whiteboard" work as a group.
+Give one sentence explaining what each of you contributed.
+If you used the code from the lab challenge, explain what is shared between you and your lab partner.
+
+<!-- Details and screenshots here -->
+
+
+
+Describe any serious problems you encountered.
+
+<!-- Details and screenshots here -->
+
+
+List any other comments here.
+Feel free to provide any feedback on how much you learned from doing the assignment, and whether you enjoyed doing it.
+
+<!-- Details and screenshots here -->
+
+
+
+
+
+<!--
+
+Leave the following, as this will format your text above to look nice in a wed browser.
+
+-->
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible");</script>
+
+--[ 2018.11.19.16.44.59.779.0 ]--
+InitFile: /src/FastFoodVisualizer.java
+import java.awt.*;
+
+/**
+ * Loads and visualizes location data, and reports information on the closest
+ * data point to mouse cursor
+ */
+public class FastFoodVisualizer {
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    private static final Color cText = new Color(64,64,64);
+
+    private static void parseCSVLine(String line, String[] data) {
+        boolean inQuote = false;
+        int s = -1;
+        int j = 0;
+        for(int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if(c == ',' && !inQuote) {
+                if(line.charAt(s+1) == '"' && line.charAt(i-1) == '"') {
+                    data[j] = line.substring(s+2,i-1);
+                } else {
+                    data[j] = line.substring(s + 1, i);
+                }
+                j++;
+                s = i;
+                continue;
+            }
+            if(c=='"') {
+                inQuote = !inQuote;
+            }
+        }
+        int i = line.length();
+        if(s < i) {
+            if(line.charAt(s+1) == '"' && line.charAt(i-1) == '"') {
+                data[j] = line.substring(s+2,i-1);
+            } else {
+                data[j] = line.substring(s + 1, i);
+            }
+        }
+    }
+
+    private static String[][] readCSV(String filename, int m) {
+        String[] lines = (new In(filename)).readAllLines();
+        int n = lines.length;
+        String[][] a = new String[n][m];
+        for(int i = 0; i < n; i++) parseCSVLine(lines[i], a[i]);
+        return a;
+    }
+
+    private static void insertCSV(String filename, PointSearch<String[]> ps) {
+        String[][] data = readCSV(filename, 4);
+        for(int i = 0; i < data.length; i++) {
+            double longitude = Double.parseDouble(data[i][0]);
+            double latitude = Double.parseDouble(data[i][1]);
+            String[] loc = {data[i][2], data[i][3]};
+            ps.put(new Point(longitude, latitude), loc);
+        }
+    }
+
+    public static void main(String[] args) {
+        PointSearch<String[]> psBurgerKings = new PSKDTree<>();
+
+        insertCSV("burgerking.csv", psBurgerKings);
+
+        Visualizer.setScaling(psBurgerKings.min(), psBurgerKings.max());
+
+        StdDraw.show(0);
+
+        Mouse mouse = new Mouse(24, 36, 464, 464);
+
+        while(true) {
+            Point loc = Visualizer.xformInv(mouse.getLocation());
+
+            Visualizer.clear();
+            Visualizer.drawKDTree(psBurgerKings, false, false);
+            Visualizer.drawNeighbors(psBurgerKings, loc, true, 0);
+
+            StdDraw.setPenColor(cText);
+            int i = 464;
+            String[] value = psBurgerKings.getNearest(loc);
+            if(value != null) {
+                for (String l : value) {
+                    StdDraw.text(256, i, l);
+                    i -= 16;
+                }
+            }
+
+            StdDraw.show(DELAY);
+        }
+
+
+    }
+}
+
+--[ 2018.11.19.16.44.59.782.0 ]--
+InitFile: /src/KeyPress.java
+/**
+ * KeyPress is a helper class for detecting key presses (not just whether the key is pressed)
+ */
+public class KeyPress {
+    private final int key;
+    private boolean pressed;
+
+    public KeyPress(int key) {
+        this.key = key;
+    }
+
+    public boolean isDown() {
+        return StdDraw.isKeyPressed(this.key);
+    }
+
+    public boolean isUp() {
+        return !isDown();
+    }
+
+    public boolean isPressed() {
+        boolean p = StdDraw.isKeyPressed(this.key);
+        boolean v = !pressed && p;
+        pressed = p;
+        return v;
+    }
+}
+
+--[ 2018.11.19.16.44.59.785.0 ]--
+InitFile: /src/PointDist.java
+/**
+ * PointDist is a simple tuple of a Point and a dist.
+ * This class is helpful for storing, passing, or returning the pair.
+ */
+public final class PointDist implements Comparable<PointDist> {
+    private final Point p;
+    private final double d;
+
+    public PointDist(Point p, double d) {
+        this.p = p;
+        this.d = d;
+    }
+
+    public Point p() { return p; }
+
+    public double d() { return d; }
+
+    public int compareTo(PointDist that) {
+        return Double.compare(this.d, that.d);
+    }
+}
+
+--[ 2018.11.19.16.44.59.788.0 ]--
+InitFile: /src/Mouse.java
+/**
+ * Mouse is a helper class for detecting mouse presses (not just whether the mouse is pressed)
+ * and for transforming the cursor location from window-space to program-space
+ */
+public class Mouse {
+    private boolean pressed;
+    private final int xOffset, yOffset, width, height;
+
+    public Mouse(int xOffset, int yOffset, int width, int height) {
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.width = width;
+        this.height = height;
+    }
+
+    public boolean isPressed() {
+        boolean p = StdDraw.mousePressed();
+        boolean v = !pressed && p;
+        pressed = p;
+        return v;
+    }
+
+    public Point getLocation() {
+        double mouseX = (StdDraw.mouseX() - (float)xOffset) / (float)width;
+        double mouseY = (StdDraw.mouseY() - (float)yOffset) / (float)height;
+        return new Point(mouseX, mouseY);
+    }
+}
+
+--[ 2018.11.19.16.44.59.796.0 ]--
+InitFile: /src/NearestNeighborVisualizer.java
+import java.awt.event.KeyEvent;
+
+/**
+ * Visualizes nearest neighbors to mouse cursor and partitioning data
+ */
+public class NearestNeighborVisualizer {
+
+    // number of dots to add at start
+    private final static int nGaussian = 100;
+    private final static int nUniform  = 100;
+
+    // delay in milliseconds (controls animation speed)
+    private final static int DELAY = 10;
+
+    // creates a new PointSearch data structure
+    // note: you can swap between PSKDTree and PSBruteForce to debug your code
+    private static PointSearch<Character> createNewPS() {
+        return new PSKDTree<>();
+    }
+
+    public static void main(String[] args) {
+        PointSearch<Character> ps = createNewPS();
+
+        // add some random points
+        for(int i = 0; i < nGaussian; i++) ps.put(Point.gaussian(), 'g');
+        for(int i = 0; i < nUniform; i++) ps.put(Point.uniform(), 'u');
+
+        // add points to match assignment write-up
+        /*
+        ps.put(new Point(0.8, 0.9), 'A');
+        ps.put(new Point(0.5, 0.4), 'B');
+        ps.put(new Point(0.2, 0.6), 'C');
+        ps.put(new Point(0.3, 0.1), 'D');
+        ps.put(new Point(0.9, 0.4), 'E');
+        */
+
+        StdDraw.show(0);
+
+        int k = 10;
+        boolean drawClosest = true;
+        boolean drawPartitions = false;
+        boolean drawBoundingBox = false;
+
+        KeyPress keyP    = new KeyPress(KeyEvent.VK_P);
+        KeyPress keyUp   = new KeyPress(KeyEvent.VK_UP);
+        KeyPress keyDown = new KeyPress(KeyEvent.VK_DOWN);
+        KeyPress keyC    = new KeyPress(KeyEvent.VK_C);
+        KeyPress keyN    = new KeyPress(KeyEvent.VK_N);
+        KeyPress keyB    = new KeyPress(KeyEvent.VK_B);
+        Mouse    mouse   = new Mouse(24, 36, 464, 464);
+
+        while(true) {
+            Point loc = mouse.getLocation();
+
+            if(keyC.isPressed()) ps = createNewPS();
+            if(keyUp.isPressed()) k++;
+            if(keyDown.isPressed() && k > 0) k--;
+            if(keyN.isPressed()) drawClosest = !drawClosest;
+            if(keyP.isPressed()) drawPartitions = !drawPartitions;
+            if(keyB.isPressed()) drawBoundingBox = !drawBoundingBox;
+            if(mouse.isPressed()) ps.put(loc, 'm');
+
+            Visualizer.clear();
+            Visualizer.drawKDTree(ps, drawPartitions, drawBoundingBox);
+            Visualizer.drawNeighbors(ps, loc, drawClosest, k);
+
+            StdDraw.show(DELAY);
+        }
+    }
+}
+
+--[ 2018.11.19.16.45.17.628.0 ]--
+UpdateTree (AD): 19 0
++ /out/production/P05_KDTrees/algs4.jar
++ /out/production/P05_KDTrees/stdlib.jar
++ /out/production/P05_KDTrees/Mouse.class
++ /out/production/P05_KDTrees/Point.class
++ /out/production/P05_KDTrees/Point$1.class
++ /out/production/P05_KDTrees/Point$2.class
++ /out/production/P05_KDTrees/Point$3.class
++ /out/production/P05_KDTrees/Point$4.class
++ /out/production/P05_KDTrees/KeyPress.class
++ /out/production/P05_KDTrees/PSKDTree.class
++ /out/production/P05_KDTrees/Partition.class
++ /out/production/P05_KDTrees/PointDist.class
++ /out/production/P05_KDTrees/Visualizer.class
++ /out/production/P05_KDTrees/PointSearch.class
++ /out/production/P05_KDTrees/PSBruteForce.class
++ /out/production/P05_KDTrees/PSKDTree$Node.class
++ /out/production/P05_KDTrees/FastFoodVisualizer.class
++ /out/production/P05_KDTrees/Partition$Direction.class
++ /out/production/P05_KDTrees/NearestNeighborVisualizer.class
+
+--[ 2018.11.19.16.45.17.741.0 ]--
+CompilationStatus (AEW): 0 0 0
+--[ 2018.11.19.16.45.40.338.0 ]--
+:/src/NearestNeighborVisualizer.java
+r 18         return new P<>();
+--[ 2018.11.19.16.45.40.539.0 ]--
+r 18         return new PS<>();
+--[ 2018.11.19.16.45.41.119.0 ]--
+r 18         return new PSB<>();
+--[ 2018.11.19.16.45.41.534.0 ]--
+r 18         return new PSBr<>();
+--[ 2018.11.19.16.45.41.688.0 ]--
+r 18         return new PSBru<>();
+--[ 2018.11.19.16.45.42.754.0 ]--
+r 18         return new PSBruteForce<>();
+--[ 2018.11.19.16.45.42.831.0 ]--
+r 18         return new PSBruteForce();
+--[ 2018.11.19.16.45.42.924.0 ]--
+r 18         return new PSBruteForce<>();
+--[ 2018.11.19.16.45.49.842.0 ]--
+CompilationStatus (AEW): 0 0 0
+--[ 2018.11.19.16.46.02.530.0 ]--
+DisposeComponent
