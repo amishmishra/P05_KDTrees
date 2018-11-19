@@ -13,11 +13,33 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         Partition.Direction dir;
     }
 
+    private Node root;
+
     // constructor makes empty kD-tree
-    public PSKDTree() { }
+    public PSKDTree() {
+
+    }
 
     // add the given Point to kD-tree
     public void put(Point p, Value v) {
+        Node newNode = new Node;
+        newNode.p = p;
+        newNode.v = v;
+        if(this.isEmpty()){
+            root = newNode;
+        } else{
+            Node finger;
+            finger = root;
+            while(finger.left != null || finger.right != null){
+
+                if(newNode.dir == Partition.Direction.LEFTRIGHT && finger.p.x() >= newNode.p.x()){
+                    finger = finger.left;
+                } else {
+                    finger = finger.right;
+                }
+            }
+        }
+
     }
 
     public Value get(Point p) {
