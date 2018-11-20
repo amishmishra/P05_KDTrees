@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -14,8 +15,10 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     private Node root;
+    private ArrayList<Point> listOfPoints; //stackOfPoints;
     // constructor makes empty kD-tree
     public PSKDTree() {
+        listOfPoints = new ArrayList<Point>();
     }
 
     // add the given Point to kD-tree
@@ -29,50 +32,101 @@ public class PSKDTree<Value> implements PointSearch<Value> {
             root = newNode;
         } else {
             finger = root;
-            while (finger.left != null || finger.right != null) { //this while loop should get us to the bottom
-                if (finger.dir == Partition.Direction.LEFTRIGHT) {
-                    if (finger.p.x() >= newNode.p.x()) { //the new node is to the left
+            while (true) {
+                //comparing x's
+                double fingerValue = finger.p.xy(finger.dir);
+                double newNodeValue = newNode.p.xy(finger.dir);
+                if (newNodeValue < fingerValue) { //go down the left
+                    if (finger.left == null) {
+                        if (!this.contains(newNode.p)) {
+                            listOfPoints.add(newNode.p);
+                            StdOut.println(newNode.p);
+                        }
+                        finger.left = newNode;
+                        break; //baby
+                    } else {
                         finger = finger.left;
+                    }
+                } else { //go down the right
+                    if (finger.right == null) {
+                        if (!this.contains(newNode.p)) {
+                            listOfPoints.add(newNode.p);
+                            StdOut.println(newNode.p);
+                        }
+                        finger.right = newNode;
+                        break; //baby
                     } else {
                         finger = finger.right;
                     }
-                } else {//the finger node is a down up partitioning node
-                    if (finger.p.y() >= newNode.p.y()) { //the new node is below
-                        finger = finger.left;
-                    } else {
-                        finger = finger.right;
-                    }
-                }
-            }
-            //at this point, we are at the bottom of the tree (finger is pointing to a leaf with no further leaves
-            if (finger.dir == Partition.Direction.LEFTRIGHT) {
-                newNode.dir = Partition.Direction.LEFTRIGHT;
-                if (finger.p.x() >= newNode.p.x()) { //the new node is to the left
-                    finger.left = newNode;
-                } else {
-                    finger.right = newNode;
-                }
-            } else {//the finger node is a down up partitioning node
-                newNode.dir = Partition.Direction.DOWNUP;
-                if (finger.p.y() >= newNode.p.y()) { //the new node is below
-                    finger.left = newNode;
-                } else {
-                    finger.right = newNode;
                 }
             }
         }
-
     }
 
     public Value get(Point p) {
-        if (this.isEmpty()) {
+        Node finger;
+        if(this.isEmpty()){
             return null;
+        } else {
+            finger = root;
+            while (true) {
+                //comparing x's
+                double fingerValue = finger.p.xy(finger.dir);
+                double pValue = p.xy(finger.dir);
+                if (pValue < fingerValue) { //go down the left
+                    if (finger.left == null) {
+                        return null;
+                    } else {
+                        if (finger.left.p.equals(p)) {
+                            return finger.v;
+                        }
+                        finger = finger.left;
+                    }
+                } else { //go down the right
+                    if (finger.right == null) {
+                        return null;
+                    } else {
+                        if (finger.right.p.equals(p)) {
+                            return finger.v;
+                        }
+                        finger = finger.right;
+                    }
+                }
+            }
         }
-        return null;
     }
 
     public boolean contains(Point p) {
-        return false;
+        Node finger;
+        if (this.isEmpty()) {
+            return false;
+        } else {
+            finger = root;
+            while (true) {
+                //comparing x's
+                double fingerValue = finger.p.xy(finger.dir);
+                double pValue = p.xy(finger.dir);
+                if (pValue < fingerValue) { //go down the left
+                    if (finger.left == null) {
+                        return false;
+                    } else {
+                        if (finger.left.p.equals(p)) {
+                            return true;
+                        }
+                        finger = finger.left;
+                    }
+                } else { //go down the right
+                    if (finger.right == null) {
+                        return false;
+                    } else {
+                        if (finger.right.p.equals(p)) {
+                            return true;
+                        }
+                        finger = finger.right;
+                    }
+                }
+            }
+        }
     }
 
     public Value getNearest(Point p) {
@@ -80,7 +134,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     // return an iterable of all points in collection
-    public Iterable<Point> points() { return null; }
+    public Iterable<Point> points() { return listOfPoints; }
 
     // return an iterable of all partitions that make up the kD-tree
     public Iterable<Partition> partitions() {
