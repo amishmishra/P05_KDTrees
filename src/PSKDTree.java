@@ -14,28 +14,50 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     private Node root;
-
     // constructor makes empty kD-tree
     public PSKDTree() {
-
     }
 
     // add the given Point to kD-tree
     public void put(Point p, Value v) {
-        Node newNode = new Node;
+        Node newNode = new Node();
         newNode.p = p;
         newNode.v = v;
+        Node finger;
         if(this.isEmpty()){
+            newNode.dir = Partition.Direction.LEFTRIGHT;
             root = newNode;
-        } else{
-            Node finger;
+        } else {
             finger = root;
-            while(finger.left != null || finger.right != null){
-
-                if(newNode.dir == Partition.Direction.LEFTRIGHT && finger.p.x() >= newNode.p.x()){
-                    finger = finger.left;
+            while (finger.left != null || finger.right != null) { //this while loop should get us to the bottom
+                if (finger.dir == Partition.Direction.LEFTRIGHT) {
+                    if (finger.p.x() >= newNode.p.x()) { //the new node is to the left
+                        finger = finger.left;
+                    } else {
+                        finger = finger.right;
+                    }
+                } else {//the finger node is a down up partitioning node
+                    if (finger.p.y() >= newNode.p.y()) { //the new node is below
+                        finger = finger.left;
+                    } else {
+                        finger = finger.right;
+                    }
+                }
+            }
+            //at this point, we are at the bottom of the tree (finger is pointing to a leaf with no further leaves
+            if (finger.dir == Partition.Direction.LEFTRIGHT) {
+                newNode.dir = Partition.Direction.LEFTRIGHT;
+                if (finger.p.x() >= newNode.p.x()) { //the new node is to the left
+                    finger.left = newNode;
                 } else {
-                    finger = finger.right;
+                    finger.right = newNode;
+                }
+            } else {//the finger node is a down up partitioning node
+                newNode.dir = Partition.Direction.DOWNUP;
+                if (finger.p.y() >= newNode.p.y()) { //the new node is below
+                    finger.left = newNode;
+                } else {
+                    finger.right = newNode;
                 }
             }
         }
@@ -43,6 +65,9 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     public Value get(Point p) {
+        if (this.isEmpty()) {
+            return null;
+        }
         return null;
     }
 
@@ -82,7 +107,8 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     public int size() { return 0; }
 
     // return whether the kD-tree is empty
-    public boolean isEmpty() { return true; }
+    public boolean isEmpty() {
+        return root==null; }
 
     // place your timing code or unit testing here
     public static void main(String[] args) {
