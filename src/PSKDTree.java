@@ -16,10 +16,17 @@ public class PSKDTree<Value> implements PointSearch<Value> {
 
     private Node root;
     private ArrayList<Point> listOfPoints; //stackOfPoints;
+    private int treeSize;
     // constructor makes empty kD-tree
     public PSKDTree() {
-        listOfPoints = new ArrayList<Point>();
+        listOfPoints = new ArrayList<Point>(); // an iterable
+
     }
+
+    // TODO update the direction. Currently it just sticks to LeftRight
+    // using something like: finger.dir = Partition.nextDirection(finger.dir);
+    // I'm confused about how this works though...I asked a question on Piazza!
+    // TODO (like the dog, except spelled a little different!)
 
     // add the given Point to kD-tree
     public void put(Point p, Value v) {
@@ -28,13 +35,13 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         newNode.v = v;
         Node finger;
         if(this.isEmpty()){
-            newNode.dir = Partition.Direction.LEFTRIGHT;
+            newNode.dir = Partition.Direction.LEFTRIGHT; //our root will always start out LEFTRIGHT
             root = newNode;
         } else {
             finger = root;
             while (true) {
                 //comparing x's
-                double fingerValue = finger.p.xy(finger.dir);
+                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
                 double newNodeValue = newNode.p.xy(finger.dir);
                 if (newNodeValue < fingerValue) { //go down the left
                     if (finger.left == null) {
@@ -43,6 +50,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
                             StdOut.println(newNode.p);
                         }
                         finger.left = newNode;
+                        treeSize++;
                         break; //baby
                     } else {
                         finger = finger.left;
@@ -54,6 +62,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
                             StdOut.println(newNode.p);
                         }
                         finger.right = newNode;
+                        treeSize++;
                         break; //baby
                     } else {
                         finger = finger.right;
@@ -138,7 +147,21 @@ public class PSKDTree<Value> implements PointSearch<Value> {
 
     // return an iterable of all partitions that make up the kD-tree
     public Iterable<Partition> partitions() {
-        return null;
+        Queue<Partition> q = new Queue<>();
+        Partition partition;
+
+        partition = new Partition(listOfPoints.get(0),listOfPoints.get(1), Partition.Direction.LEFTRIGHT);
+        q.enqueue(partition);
+
+
+
+        for(Point pt : listOfPoints){
+
+
+            q.enqueue(partition);
+        }
+
+        return q;
     }
 
     // return the Point that is closest to the given Point
@@ -158,7 +181,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     public Point max() { return null; }
 
     // return the number of Points in kD-tree
-    public int size() { return 0; }
+    public int size() { return treeSize; } //incremented in put, which is fine since we have no delete for our K-D Tree
 
     // return whether the kD-tree is empty
     public boolean isEmpty() {
