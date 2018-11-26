@@ -17,6 +17,8 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     private Node root;
     private ArrayList<Point> listOfPoints; //stackOfPoints;
     private int treeSize;
+    private Point minPoint;
+    private Point maxPoint;
     // constructor makes empty kD-tree
     public PSKDTree() {
         listOfPoints = new ArrayList<Point>(); // an iterable
@@ -26,7 +28,6 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     // TODO update the direction. Currently it just sticks to LeftRight
     // using something like: finger.dir = Partition.nextDirection(finger.dir);
     // I'm confused about how this works though...I asked a question on Piazza!
-    // TODO (like the dog, except spelled a little different!)
 
     // add the given Point to kD-tree
     public void put(Point p, Value v) {
@@ -37,8 +38,22 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         if(this.isEmpty()){
             newNode.dir = Partition.Direction.LEFTRIGHT; //our root will always start out LEFTRIGHT
             root = newNode;
+            minPoint = root.p;
+            maxPoint = root.p;
         } else {
             finger = root;
+            if (p.x() <= minPoint.x()) { //p's x is smaller than min
+                minPoint = new Point(p.x(), minPoint.y());
+            }
+            if (p.y() <= minPoint.y()) { //p's y is smaller than min
+                minPoint = new Point(minPoint.x(),p.y());
+            }
+            if (p.x() >= maxPoint.x()) { //p's x is larger than max
+                maxPoint = new Point(p.x(), maxPoint.y());
+            }
+            if (p.y() >= maxPoint.y()) { //p's y is larger than max
+                maxPoint = new Point(maxPoint.x(),p.y());
+            }
             while (true) {
                 //comparing x's
                 double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
@@ -139,7 +154,9 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     public Value getNearest(Point p) {
-        return null;
+        return root.v;
+
+
     }
 
     // return an iterable of all points in collection
@@ -150,15 +167,43 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         Queue<Partition> q = new Queue<>();
         Partition partition;
 
-        partition = new Partition(listOfPoints.get(0),listOfPoints.get(1), Partition.Direction.LEFTRIGHT);
-        q.enqueue(partition);
-
-
+//        partition = new Partition(listOfPoints.get(0),listOfPoints.get(1), Partition.Direction.LEFTRIGHT);
+//        q.enqueue(partition);
 
         for(Point pt : listOfPoints){
-
-
-            q.enqueue(partition);
+            Node finger;
+            finger = root;
+            Node node = new Node();
+            while (true) {
+                //comparing x's
+                double fingerValue = finger.p.xy(finger.dir);
+                double pValue = pt.xy(finger.dir);
+                if (pValue < fingerValue) { //go down the left
+                    if (finger.left == null) {
+                        node = null;
+                        break;
+                    } else {
+                        if (finger.left.p.equals(pt)) {
+                            node = finger;
+                            break;
+                        }
+                        finger = finger.left;
+                    }
+                } else { //go down the right
+                    if (finger.right == null) {
+                        node = null;
+                        break;
+                    } else {
+                        if (finger.right.p.equals(pt)) {
+                            node = finger;
+                            break;
+                        }
+                        finger = finger.right;
+                    }
+                }
+            }
+//            partition = new Partition(pt, finger.dir);
+//            q.enqueue(pt);
         }
 
         return q;
@@ -166,7 +211,28 @@ public class PSKDTree<Value> implements PointSearch<Value> {
 
     // return the Point that is closest to the given Point
     public Point nearest(Point p) {
-        return null;
+        Node newNode = new Node();
+        newNode.p = p;
+        Node finger;
+        finger = root;
+        while (true) {
+            //comparing x's
+            double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
+            double newNodeValue = newNode.p.xy(finger.dir);
+            if (newNodeValue < fingerValue) { //go down the left
+                if (finger.left == null) {
+                    return finger.p;
+                } else {
+                    finger = finger.left;
+                }
+            } else { //go down the right
+                if (finger.right == null) {
+                    return finger.p;
+                } else {
+                    finger = finger.right;
+                }
+            }
+        }
     }
 
     // return the k nearest Points to the given Point
@@ -177,8 +243,8 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     // return the min and max for all Points in collection.
     // The min-max pair will form a bounding box for all Points.
     // if kD-tree is empty, return null.
-    public Point min() { return null; }
-    public Point max() { return null; }
+    public Point min() { return minPoint; }
+    public Point max() { return maxPoint; }
 
     // return the number of Points in kD-tree
     public int size() { return treeSize; } //incremented in put, which is fine since we have no delete for our K-D Tree
