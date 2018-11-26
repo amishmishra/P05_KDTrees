@@ -1,5 +1,9 @@
+import sun.security.util.Length;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * PSKDTree is a Point collection that provides nearest neighbor searching using
@@ -38,6 +42,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         if(this.isEmpty()){
             newNode.dir = Partition.Direction.LEFTRIGHT; //our root will always start out LEFTRIGHT
             root = newNode;
+            listOfPoints.add(root.p);
             minPoint = root.p;
             maxPoint = root.p;
         } else {
@@ -209,35 +214,51 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         return q;
     }
 
-    // return the Point that is closest to the given Point
-    public Point nearest(Point p) {
-        Node newNode = new Node();
-        newNode.p = p;
-        Node finger;
-        finger = root;
-        while (true) {
-            //comparing x's
-            double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
-            double newNodeValue = newNode.p.xy(finger.dir);
-            if (newNodeValue < fingerValue) { //go down the left
-                if (finger.left == null) {
-                    return finger.p;
-                } else {
-                    finger = finger.left;
-                }
-            } else { //go down the right
-                if (finger.right == null) {
-                    return finger.p;
-                } else {
-                    finger = finger.right;
+    private void kNearestTraverse(Node n, Point p, MaxPQ<PointDist> kNearest, int k) {
+        if (n == null) {
+            return;
+        }
+        Comparator<Point> distCalc = p.distanceToComparator();
+        if (kNearest.size() < k){
+            kNearest.insert(new PointDist(n.p, n.p.dist(p)));
+        }
+        else {
+            PointDist minDistP = kNearest.max();
+            if (distCalc.compare(n.p, minDistP.p()) < 0) {//found a new close enough point!
+                kNearest.insert(new PointDist(n.p, n.p.dist(p)));
+                if (kNearest.size() > k) {
+                    kNearest.delMax();
                 }
             }
         }
+        //TODO: Pruning
+        kNearestTraverse(n.left, p, kNearest, k);
+        kNearestTraverse(n.right, p, kNearest, k);
+    }
+    // return the Point that is closest to the given Point
+    public Point nearest(Point p) {
+        Node n = root;
+        MaxPQ<PointDist> kNearest = new MaxPQ<>();
+        kNearestTraverse(n, p, kNearest, 1);
+        return kNearest.max().p();
     }
 
     // return the k nearest Points to the given Point
-    public Iterable<Point> nearest(Point p, int k) {
-        return null;
+    public Iterable<Point> nearest(Point p, int k) throws IllegalArgumentException{
+        if (p == null || k < 0) {
+            throw new IllegalArgumentException("Woah there! Stay in your limits, boi.");
+        }
+        else if (k == 0) {
+            return null;
+        }
+        Node n = root;
+        MaxPQ<PointDist> kNearest = new MaxPQ<>();
+        kNearestTraverse(n, p, kNearest, k);
+        Stack<Point> stackOfKNearest = new Stack<Point>();
+        for (PointDist ptDist: kNearest) {
+            stackOfKNearest.push(ptDist.p());
+        }
+        return stackOfKNearest;
     }
 
     // return the min and max for all Points in collection.
