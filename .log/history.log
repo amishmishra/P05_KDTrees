@@ -39586,3 +39586,562 @@ UpdateTree (AD): 3 3
 + /out/production/P05_KDTrees/PSKDTree$1.class
 + /out/production/P05_KDTrees/PSKDTree$Node.class
 
+--[ 2018.11.26.22.58.33.183.0 ]--
++ 62             while (true) {
++ 63                 //comparing x's
++ 64                 double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
++ 65                 double newNodeValue = newNode.p.xy(finger.dir);
++ 66                 if (newNodeValue < fingerValue) { //go down the left
++ 67                     if (finger.left == null) {
++ 68                         if (!this.contains(newNode.p)) {
++ 69                             listOfPoints.add(newNode.p);
++ 70                         }
++ 71                         finger.left = newNode;
++ 72                         treeSize++;
++ 73                         break; //baby
++ 74                     } else {
++ 75                         finger = finger.left;
++ 76                     }
+r 77                 } else { //go down the right
+r 78                     if (finger.right == null) {
+r 79                         if (!this.contains(newNode.p)) {
+r 80                             listOfPoints.add(newNode.p);
+r 81                         }
+r 82                         finger.right = newNode;
+r 83                         treeSize++;
+r 84                         break; //baby
+r 85                     } else {
+r 86                         finger = finger.right;
+r 87                     }
+r 90         }
+r 91     }
+r 92 
+r 93     public Value get(Point p) {
+r 94         Node finger;
+r 95         if(this.isEmpty()){
+r 96             return null;
+r 97         } else {
+r 98             finger = root;
+r 99             while (true) {
+r 100                 //comparing x's
+r 101                 double fingerValue = finger.p.xy(finger.dir);
+r 102                 double pValue = p.xy(finger.dir);
+r 103                 if (pValue < fingerValue) { //go down the left
+r 104                     if (finger.left == null) {
+r 105                         return null;
+r 106                     } else {
+r 107                         if (finger.left.p.equals(p)) {
+r 108                             return finger.v;
+r 109                         }
+r 110                         finger = finger.left;
+r 111                     }
+r 112                 } else { //go down the right
+r 113                     if (finger.right == null) {
+r 114                         return null;
+r 115                     } else {
+r 116                         if (finger.right.p.equals(p)) {
+r 117                             return finger.v;
+r 118                         }
+r 119                         finger = finger.right;
+r 120                     }
+r 121                 }
+r 122             }
+r 126     public boolean contains(Point p) {
+r 128         if (this.isEmpty()) {
+r 129             return false;
++ 132             while (true) {
+r 133                 //comparing x's
++ 136                 if (pValue < fingerValue) { //go down the left
++ 137                     if (finger.left == null) {
++ 138                         return false;
++ 139                     } else {
+r 140                         if (finger.left.p.equals(p)) {
+r 141                             return true;
+r 142                         }
+r 143                         finger = finger.left;
+r 144                     }
+r 145                 } else { //go down the right
+r 146                     if (finger.right == null) {
+r 147                         return false;
+r 148                     } else {
+r 149                         if (finger.right.p.equals(p)) {
+r 150                             return true;
+r 151                         }
+r 152                         finger = finger.right;
+r 153                     }
+r 154                 }
+r 155             }
+r 156         }
+- 160
+- 161
+r 161 
+r 162 
+- 289
+- 289
+- 289
+- 289
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+--[ 2018.11.26.22.59.16.296.0 ]--
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+r 127         if(get(p)!=null) return true;
+r 128         return false;
++ 261 
++ 262     private static PointSearch<Character> createNewPS() {
++ 263         return new PSKDTree<>();
++ 264     }
++ 268         ///tests/input100K.txt
++ 269 
++ 270         PointSearch<Character> ps = createNewPS();
++ 271         In in = new In(args[0]);
++ 272 
++ 273         int size = 100000; //change this depending on the size of the input file!
++ 274         double[] dbl,time;
++ 275         dbl = new double[size];
++ 276         int testing_size = 10000;
++ 277         time = new double[testing_size];
++ 278         dbl = in.readAllDoubles();
++ 279         double elapsedTime=0;
++ 280 
++ 281 
++ 282         for(int i = 0; i<size-1; i=i+2){
++ 283             Point p = new Point(dbl[i],dbl[i+1]);
++ 284             ps.put(p,'r');
++ 285         }
++ 286 
++ 287 
++ 288         for(int j = 0; j<testing_size-1;j++) {
++ 289             Stopwatch rolex = new Stopwatch();
++ 290             ps.nearest(Point.uniform());
++ 291             time[j] =rolex.elapsedTime();
++ 292 
++ 293             //StdOut.printf("time elapsed: %f\n", time[j]);
++ 294             elapsedTime += time[j];
++ 295 
++ 296         }
++ 297 
++ 298         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 299 
++ 300 
+--[ 2018.11.26.23.00.10.474.0 ]--
++ 62             while (finger != null) {
++ 63                 double fingerValue = finger.p.xy(finger.dir);
++ 64                 double pValue = p.xy(finger.dir);
++ 65                 if (pValue < fingerValue) {
++ 66                     finger = finger.left;
++ 67                 }
++ 68                 else if (pValue > fingerValue) {
+r 69                     finger = finger.right;
+r 70                 }
+r 71                 else {
+r 72                     return null;
+r 73                 }
+r 74             }
+r 75             finger = newNode;
+r 76             treeSize++;
+r 77             if (!this.contains(newNode.p)) {
+r 78                 listOfPoints.add(newNode.p);
+r 79             }
+r 80 //            while (true) {
+r 81 //                //comparing x's
+r 82 //                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
+r 83 //                double newNodeValue = newNode.p.xy(finger.dir);
+r 84 //                if (newNodeValue < fingerValue) { //go down the left
+r 85 //                    if (finger.left == null) {
+r 86 //                        if (!this.contains(newNode.p)) {
+r 87 //                            listOfPoints.add(newNode.p);
+r 88 //                        }
+r 89 //                        finger.left = newNode;
+r 90 //                        treeSize++;
+r 91 //                        break; //baby
+r 92 //                    } else {
+r 93 //                        finger = finger.left;
+r 94 //                    }
+r 95 //                } else { //go down the right
+r 96 //                    if (finger.right == null) {
+r 97 //                        if (!this.contains(newNode.p)) {
+r 98 //                            listOfPoints.add(newNode.p);
+r 99 //                        }
+r 100 //                        finger.right = newNode;
+r 101 //                        treeSize++;
+r 102 //                        break; //baby
+r 103 //                    } else {
+r 104 //                        finger = finger.right;
+r 105 //                    }
+r 106 //                }
+r 107 //            }
+r 108         }
+r 109     }
+r 110 
+r 111     public Value get(Point p) {
+r 112         Node finger;
+r 113         if(this.isEmpty()){
+r 114             return null;
+r 115         } else {
+r 116             finger = root;
+r 117             while (finger != null) {
+r 118                 double fingerValue = finger.p.xy(finger.dir);
+r 119                 double pValue = p.xy(finger.dir);
+r 120                 if (pValue < fingerValue) {
+r 121                     finger = finger.left;
+r 122                 }
+r 123                 else if (pValue > fingerValue) {
+r 124                     finger = finger.right;
+r 125                 }
+r 126                 else {
+r 127                     return finger.v;
++ 130             return null;
+--[ 2018.11.26.23.00.45.570.0 ]--
++ 140 <<<<<<< HEAD
++ 142 =======
+r 143         return get(nearest(p));
+r 144 >>>>>>> origin/master
+--[ 2018.11.26.23.00.50.215.0 ]--
++ 62             while (true) {
++ 63                 //comparing x's
++ 64                 double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
++ 65                 double newNodeValue = newNode.p.xy(finger.dir);
++ 66                 if (newNodeValue < fingerValue) { //go down the left
++ 67                     if (finger.left == null) {
++ 68                         if (!this.contains(newNode.p)) {
++ 69                             listOfPoints.add(newNode.p);
++ 70                         }
++ 71                         finger.left = newNode;
++ 72                         treeSize++;
++ 73                         break; //baby
++ 74                     } else {
++ 75                         finger = finger.left;
++ 76                     }
+r 77                 } else { //go down the right
+r 78                     if (finger.right == null) {
+r 79                         if (!this.contains(newNode.p)) {
+r 80                             listOfPoints.add(newNode.p);
+r 81                         }
+r 82                         finger.right = newNode;
+r 83                         treeSize++;
+r 84                         break; //baby
+r 85                     } else {
+r 86                         finger = finger.right;
+r 87                     }
+r 90         }
+r 91     }
+r 92 
+r 93     public Value get(Point p) {
+r 94         Node finger;
+r 95         if(this.isEmpty()){
+r 96             return null;
+r 97         } else {
+r 98             finger = root;
+r 99             while (true) {
+r 100                 //comparing x's
+r 101                 double fingerValue = finger.p.xy(finger.dir);
+r 102                 double pValue = p.xy(finger.dir);
+r 103                 if (pValue < fingerValue) { //go down the left
+r 104                     if (finger.left == null) {
+r 105                         return null;
+r 106                     } else {
+r 107                         if (finger.left.p.equals(p)) {
+r 108                             return finger.v;
+r 109                         }
+r 110                         finger = finger.left;
+r 111                     }
+r 112                 } else { //go down the right
+r 113                     if (finger.right == null) {
+r 114                         return null;
+r 115                     } else {
+r 116                         if (finger.right.p.equals(p)) {
+r 117                             return finger.v;
+r 118                         }
+r 119                         finger = finger.right;
+r 120                     }
+r 121                 }
+r 122             }
+r 126     public boolean contains(Point p) {
+r 128         if (this.isEmpty()) {
+r 129             return false;
++ 132             while (true) {
+r 133                 //comparing x's
++ 136                 if (pValue < fingerValue) { //go down the left
++ 137                     if (finger.left == null) {
++ 138                         return false;
++ 139                     } else {
+r 140                         if (finger.left.p.equals(p)) {
+r 141                             return true;
+r 142                         }
+r 143                         finger = finger.left;
+r 144                     }
+r 145                 } else { //go down the right
+r 146                     if (finger.right == null) {
+r 147                         return false;
+r 148                     } else {
+r 149                         if (finger.right.p.equals(p)) {
+r 150                             return true;
+r 151                         }
+r 152                         finger = finger.right;
+r 153                     }
+r 154                 }
+r 155             }
+r 156         }
+- 160
+- 161
+r 161 
+r 162 
+- 289
+- 289
+- 289
+- 289
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+--[ 2018.11.26.23.01.42.474.0 ]--
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+r 127         if(get(p)!=null) return true;
+r 128         return false;
+--[ 2018.11.26.23.01.48.617.0 ]--
+- 133
+- 133
+--[ 2018.11.26.23.01.59.469.0 ]--
++ 259 
++ 260     private static PointSearch<Character> createNewPS() {
++ 261         return new PSKDTree<>();
++ 262     }
+--[ 2018.11.26.23.02.01.057.0 ]--
++ 266         ///tests/input100K.txt
++ 267 
++ 268         PointSearch<Character> ps = createNewPS();
++ 269         In in = new In(args[0]);
++ 270 
++ 271         int size = 100000; //change this depending on the size of the input file!
++ 272         double[] dbl,time;
++ 273         dbl = new double[size];
++ 274         int testing_size = 10000;
++ 275         time = new double[testing_size];
++ 276         dbl = in.readAllDoubles();
++ 277         double elapsedTime=0;
++ 278 
++ 279 
++ 280         for(int i = 0; i<size-1; i=i+2){
++ 281             Point p = new Point(dbl[i],dbl[i+1]);
++ 282             ps.put(p,'r');
++ 283         }
++ 284 
++ 285 
++ 286         for(int j = 0; j<testing_size-1;j++) {
++ 287             Stopwatch rolex = new Stopwatch();
++ 288             ps.nearest(Point.uniform());
++ 289             time[j] =rolex.elapsedTime();
++ 290 
++ 291             //StdOut.printf("time elapsed: %f\n", time[j]);
++ 292             elapsedTime += time[j];
++ 293 
++ 294         }
++ 295 
++ 296         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 297 
++ 298 
+--[ 2018.11.26.23.02.11.590.0 ]--
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+r 62             while (finger != null) {
+r 63                 double fingerValue = finger.p.xy(finger.dir);
+r 64                 double pValue = p.xy(finger.dir);
+r 65                 if (pValue < fingerValue) {
+r 66                     finger = finger.left;
+r 67                 }
+r 68                 else if (pValue > fingerValue) {
+r 69                     finger = finger.right;
+r 70                 }
+r 71                 else {
+r 72                     return null;
+r 73                 }
+r 74             }
+r 75             finger = newNode;
+r 76             treeSize++;
+r 77             if (!this.contains(newNode.p)) {
+r 78                 listOfPoints.add(newNode.p);
+--[ 2018.11.26.23.02.17.844.0 ]--
+- 89
+r 89             while (finger != null) {
+--[ 2018.11.26.23.02.21.273.0 ]--
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+r 92                 if (pValue < fingerValue) {
+r 93                     finger = finger.left;
+r 94                 }
+r 95                 else if (pValue > fingerValue) {
+r 96                     finger = finger.right;
+r 97                 }
+r 98                 else {
+r 99                     return finger.v;
+--[ 2018.11.26.23.02.23.991.0 ]--
++ 102             return null;
+--[ 2018.11.26.23.02.50.089.0 ]--
+:/readme.html
+r 33 Your name: Amish Mishra, Chester Chan, Imani Muya
+r 35 Operating system: Windows 10, and Mac OS
+r 37 Lab computer or your own computer: Personal computers
+r 39 Approx hours to complete assignment: 10 hours
+r 41 Partner's name (if applicable): Team project
+r 43 TA's or Tutor's name (if received help): Edric Yu
+r 45 Did you receive help from your instructor? yes, at some point.
+r 56 Each node held it's own position point, the value that it was assigned, it's partition direction, and reference to the node directly to its left and to its right.
+--[ 2018.11.26.23.02.50.096.0 ]--
+UpdateTree (AD): 26 0
++ /.git/logs/refs/stash
++ /.git/refs/stash
++ /.git/objects/0b/56e3eb450657f584775a34df39197adab902aa
++ /.git/objects/0b/cb356576288cbf384c8b574eec4563e03716ad
++ /.git/objects/16/969f2089f19978f6283f139cc8a26dcc57b973
++ /.git/objects/1f/267b57e44ef46bfb1dda95fca4d20ca7699266
++ /.git/objects/2d/91ab5a078f574b3f43654d336eeff5c116ab7f
++ /.git/objects/32/430c3e8a3b983dcaf069873258a20ccb460f1c
++ /.git/objects/5c/714b7c229b080c45a5ede9f7ece3cedfa68f49
++ /.git/objects/60/deb5710f2ba4f37d56cca5037da055d40f22b3
++ /.git/objects/6a/553c558ca613f4f6e47b53fabc2553acef5e35
++ /.git/objects/74/35578714dc7b90afa50919c2d0d74e0fe4d4fa
++ /.git/objects/a1/86f05348fe02881ad1779a986c8aa365274ddb
++ /.git/objects/a6/87dd0fc6f46abf79c17d9c8029f2b082e36114
++ /.git/objects/a7/f256973a651eaf880995889d1e8cc1a0931572
++ /.git/objects/b1/9c420b60963d64c2b58f5e2d140beb013a2fb8
++ /.git/objects/b1/f3b258a258ba3f36906b6c25b3ffe985ee85b5
++ /.git/objects/c4/dc752bbd2cbf1631ee1b3475d2566003a33ae9
++ /.git/objects/c6/067c8ca9b1f9bae53d606c3b8682f234e22751
++ /.git/objects/ce/e224191935ec8164f35f3259ccb6222ff25258
++ /.git/objects/cf/e46f6090432f0a8c4c565adf7ca4ad0baa35ff
++ /.git/objects/d0/a1a848fb4334356d0f0a91507dbaa2256fc24b
++ /.git/objects/dc/340b3e6f04a7ba6eb3fc59e630986974d26af2
++ /.git/objects/dc/3a2a7bfa32e21f94caf8a4d152a1a70f781ed7
++ /.git/objects/f1/f18be269f204fef2c229385f3ecdb6757638f7
++ /.git/objects/f1/fba191c02dc5800114ab8150861ab78197af63
+
