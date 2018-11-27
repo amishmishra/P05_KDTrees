@@ -59,33 +59,23 @@ public class PSKDTree<Value> implements PointSearch<Value> {
             if (p.y() >= maxPoint.y()) { //p's y is larger than max
                 maxPoint = new Point(maxPoint.x(),p.y());
             }
-            while (true) {
-                //comparing x's
-                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
-                double newNodeValue = newNode.p.xy(finger.dir);
-                if (newNodeValue < fingerValue) { //go down the left
-                    if (finger.left == null) {
-                        if (!this.contains(newNode.p)) {
-                            listOfPoints.add(newNode.p);
-                        }
-                        finger.left = newNode;
-                        treeSize++;
-                        break; //baby
-                    } else {
-                        finger = finger.left;
-                    }
-                } else { //go down the right
-                    if (finger.right == null) {
-                        if (!this.contains(newNode.p)) {
-                            listOfPoints.add(newNode.p);
-                        }
-                        finger.right = newNode;
-                        treeSize++;
-                        break; //baby
-                    } else {
-                        finger = finger.right;
-                    }
+            while (finger != null) {
+                double fingerValue = finger.p.xy(finger.dir);
+                double pValue = p.xy(finger.dir);
+                if (pValue < fingerValue) {
+                    finger = finger.left;
                 }
+                else if (pValue > fingerValue) {
+                    finger = finger.right;
+                }
+                else {
+                    return null;
+                }
+            }
+            finger = newNode;
+            treeSize++;
+            if (!this.contains(newNode.p)) {
+                listOfPoints.add(newNode.p);
             }
         }
     }
@@ -96,30 +86,20 @@ public class PSKDTree<Value> implements PointSearch<Value> {
             return null;
         } else {
             finger = root;
-            while (true) {
-                //comparing x's
+            while (finger != null) {
                 double fingerValue = finger.p.xy(finger.dir);
                 double pValue = p.xy(finger.dir);
-                if (pValue < fingerValue) { //go down the left
-                    if (finger.left == null) {
-                        return null;
-                    } else {
-                        if (finger.left.p.equals(p)) {
-                            return finger.v;
-                        }
-                        finger = finger.left;
-                    }
-                } else { //go down the right
-                    if (finger.right == null) {
-                        return null;
-                    } else {
-                        if (finger.right.p.equals(p)) {
-                            return finger.v;
-                        }
-                        finger = finger.right;
-                    }
+                if (pValue < fingerValue) {
+                    finger = finger.left;
+                }
+                else if (pValue > fingerValue) {
+                    finger = finger.right;
+                }
+                else {
+                    return finger.v;
                 }
             }
+            return null;
         }
     }
 
