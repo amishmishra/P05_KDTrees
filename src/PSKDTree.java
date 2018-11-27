@@ -59,52 +59,35 @@ public class PSKDTree<Value> implements PointSearch<Value> {
             if (p.y() >= maxPoint.y()) { //p's y is larger than max
                 maxPoint = new Point(maxPoint.x(),p.y());
             }
-            while (finger != null) {
-                double fingerValue = finger.p.xy(finger.dir);
-                double pValue = p.xy(finger.dir);
-                if (pValue < fingerValue) {
-                    finger = finger.left;
-                }
-                else if (pValue > fingerValue) {
-                    finger = finger.right;
-                }
-                else {
-                    return null;
+
+            while (true) {
+                //comparing x's
+                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
+                double newNodeValue = newNode.p.xy(finger.dir);
+                if (newNodeValue < fingerValue) { //go down the left
+                    if (finger.left == null) {
+                        if (!this.contains(newNode.p)) {
+                            listOfPoints.add(newNode.p);
+                        }
+                        finger.left = newNode;
+                        treeSize++;
+                        break; //baby
+                    } else {
+                        finger = finger.left;
+                    }
+                } else { //go down the right
+                    if (finger.right == null) {
+                        if (!this.contains(newNode.p)) {
+                            listOfPoints.add(newNode.p);
+                        }
+                        finger.right = newNode;
+                        treeSize++;
+                        break; //baby
+                    } else {
+                        finger = finger.right;
+                    }
                 }
             }
-            finger = newNode;
-            treeSize++;
-            if (!this.contains(newNode.p)) {
-                listOfPoints.add(newNode.p);
-            }
-//            while (true) {
-//                //comparing x's
-//                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
-//                double newNodeValue = newNode.p.xy(finger.dir);
-//                if (newNodeValue < fingerValue) { //go down the left
-//                    if (finger.left == null) {
-//                        if (!this.contains(newNode.p)) {
-//                            listOfPoints.add(newNode.p);
-//                        }
-//                        finger.left = newNode;
-//                        treeSize++;
-//                        break; //baby
-//                    } else {
-//                        finger = finger.left;
-//                    }
-//                } else { //go down the right
-//                    if (finger.right == null) {
-//                        if (!this.contains(newNode.p)) {
-//                            listOfPoints.add(newNode.p);
-//                        }
-//                        finger.right = newNode;
-//                        treeSize++;
-//                        break; //baby
-//                    } else {
-//                        finger = finger.right;
-//                    }
-//                }
-//            }
         }
     }
 
