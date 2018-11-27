@@ -39586,3 +39586,1022 @@ UpdateTree (AD): 3 3
 + /out/production/P05_KDTrees/PSKDTree$1.class
 + /out/production/P05_KDTrees/PSKDTree$Node.class
 
+--[ 2018.11.26.22.58.33.183.0 ]--
++ 62             while (true) {
++ 63                 //comparing x's
++ 64                 double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
++ 65                 double newNodeValue = newNode.p.xy(finger.dir);
++ 66                 if (newNodeValue < fingerValue) { //go down the left
++ 67                     if (finger.left == null) {
++ 68                         if (!this.contains(newNode.p)) {
++ 69                             listOfPoints.add(newNode.p);
++ 70                         }
++ 71                         finger.left = newNode;
++ 72                         treeSize++;
++ 73                         break; //baby
++ 74                     } else {
++ 75                         finger = finger.left;
++ 76                     }
+r 77                 } else { //go down the right
+r 78                     if (finger.right == null) {
+r 79                         if (!this.contains(newNode.p)) {
+r 80                             listOfPoints.add(newNode.p);
+r 81                         }
+r 82                         finger.right = newNode;
+r 83                         treeSize++;
+r 84                         break; //baby
+r 85                     } else {
+r 86                         finger = finger.right;
+r 87                     }
+r 90         }
+r 91     }
+r 92 
+r 93     public Value get(Point p) {
+r 94         Node finger;
+r 95         if(this.isEmpty()){
+r 96             return null;
+r 97         } else {
+r 98             finger = root;
+r 99             while (true) {
+r 100                 //comparing x's
+r 101                 double fingerValue = finger.p.xy(finger.dir);
+r 102                 double pValue = p.xy(finger.dir);
+r 103                 if (pValue < fingerValue) { //go down the left
+r 104                     if (finger.left == null) {
+r 105                         return null;
+r 106                     } else {
+r 107                         if (finger.left.p.equals(p)) {
+r 108                             return finger.v;
+r 109                         }
+r 110                         finger = finger.left;
+r 111                     }
+r 112                 } else { //go down the right
+r 113                     if (finger.right == null) {
+r 114                         return null;
+r 115                     } else {
+r 116                         if (finger.right.p.equals(p)) {
+r 117                             return finger.v;
+r 118                         }
+r 119                         finger = finger.right;
+r 120                     }
+r 121                 }
+r 122             }
+r 126     public boolean contains(Point p) {
+r 128         if (this.isEmpty()) {
+r 129             return false;
++ 132             while (true) {
+r 133                 //comparing x's
++ 136                 if (pValue < fingerValue) { //go down the left
++ 137                     if (finger.left == null) {
++ 138                         return false;
++ 139                     } else {
+r 140                         if (finger.left.p.equals(p)) {
+r 141                             return true;
+r 142                         }
+r 143                         finger = finger.left;
+r 144                     }
+r 145                 } else { //go down the right
+r 146                     if (finger.right == null) {
+r 147                         return false;
+r 148                     } else {
+r 149                         if (finger.right.p.equals(p)) {
+r 150                             return true;
+r 151                         }
+r 152                         finger = finger.right;
+r 153                     }
+r 154                 }
+r 155             }
+r 156         }
+- 160
+- 161
+r 161 
+r 162 
+- 289
+- 289
+- 289
+- 289
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+--[ 2018.11.26.22.59.16.296.0 ]--
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+r 127         if(get(p)!=null) return true;
+r 128         return false;
++ 261 
++ 262     private static PointSearch<Character> createNewPS() {
++ 263         return new PSKDTree<>();
++ 264     }
++ 268         ///tests/input100K.txt
++ 269 
++ 270         PointSearch<Character> ps = createNewPS();
++ 271         In in = new In(args[0]);
++ 272 
++ 273         int size = 100000; //change this depending on the size of the input file!
++ 274         double[] dbl,time;
++ 275         dbl = new double[size];
++ 276         int testing_size = 10000;
++ 277         time = new double[testing_size];
++ 278         dbl = in.readAllDoubles();
++ 279         double elapsedTime=0;
++ 280 
++ 281 
++ 282         for(int i = 0; i<size-1; i=i+2){
++ 283             Point p = new Point(dbl[i],dbl[i+1]);
++ 284             ps.put(p,'r');
++ 285         }
++ 286 
++ 287 
++ 288         for(int j = 0; j<testing_size-1;j++) {
++ 289             Stopwatch rolex = new Stopwatch();
++ 290             ps.nearest(Point.uniform());
++ 291             time[j] =rolex.elapsedTime();
++ 292 
++ 293             //StdOut.printf("time elapsed: %f\n", time[j]);
++ 294             elapsedTime += time[j];
++ 295 
++ 296         }
++ 297 
++ 298         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 299 
++ 300 
+--[ 2018.11.26.23.00.10.474.0 ]--
++ 62             while (finger != null) {
++ 63                 double fingerValue = finger.p.xy(finger.dir);
++ 64                 double pValue = p.xy(finger.dir);
++ 65                 if (pValue < fingerValue) {
++ 66                     finger = finger.left;
++ 67                 }
++ 68                 else if (pValue > fingerValue) {
+r 69                     finger = finger.right;
+r 70                 }
+r 71                 else {
+r 72                     return null;
+r 73                 }
+r 74             }
+r 75             finger = newNode;
+r 76             treeSize++;
+r 77             if (!this.contains(newNode.p)) {
+r 78                 listOfPoints.add(newNode.p);
+r 79             }
+r 80 //            while (true) {
+r 81 //                //comparing x's
+r 82 //                double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
+r 83 //                double newNodeValue = newNode.p.xy(finger.dir);
+r 84 //                if (newNodeValue < fingerValue) { //go down the left
+r 85 //                    if (finger.left == null) {
+r 86 //                        if (!this.contains(newNode.p)) {
+r 87 //                            listOfPoints.add(newNode.p);
+r 88 //                        }
+r 89 //                        finger.left = newNode;
+r 90 //                        treeSize++;
+r 91 //                        break; //baby
+r 92 //                    } else {
+r 93 //                        finger = finger.left;
+r 94 //                    }
+r 95 //                } else { //go down the right
+r 96 //                    if (finger.right == null) {
+r 97 //                        if (!this.contains(newNode.p)) {
+r 98 //                            listOfPoints.add(newNode.p);
+r 99 //                        }
+r 100 //                        finger.right = newNode;
+r 101 //                        treeSize++;
+r 102 //                        break; //baby
+r 103 //                    } else {
+r 104 //                        finger = finger.right;
+r 105 //                    }
+r 106 //                }
+r 107 //            }
+r 108         }
+r 109     }
+r 110 
+r 111     public Value get(Point p) {
+r 112         Node finger;
+r 113         if(this.isEmpty()){
+r 114             return null;
+r 115         } else {
+r 116             finger = root;
+r 117             while (finger != null) {
+r 118                 double fingerValue = finger.p.xy(finger.dir);
+r 119                 double pValue = p.xy(finger.dir);
+r 120                 if (pValue < fingerValue) {
+r 121                     finger = finger.left;
+r 122                 }
+r 123                 else if (pValue > fingerValue) {
+r 124                     finger = finger.right;
+r 125                 }
+r 126                 else {
+r 127                     return finger.v;
++ 130             return null;
+--[ 2018.11.26.23.00.45.570.0 ]--
++ 140 <<<<<<< HEAD
++ 142 =======
+r 143         return get(nearest(p));
+r 144 >>>>>>> origin/master
+--[ 2018.11.26.23.00.50.215.0 ]--
++ 62             while (true) {
++ 63                 //comparing x's
++ 64                 double fingerValue = finger.p.xy(finger.dir); //pull the value of finger based on the direction we are on
++ 65                 double newNodeValue = newNode.p.xy(finger.dir);
++ 66                 if (newNodeValue < fingerValue) { //go down the left
++ 67                     if (finger.left == null) {
++ 68                         if (!this.contains(newNode.p)) {
++ 69                             listOfPoints.add(newNode.p);
++ 70                         }
++ 71                         finger.left = newNode;
++ 72                         treeSize++;
++ 73                         break; //baby
++ 74                     } else {
++ 75                         finger = finger.left;
++ 76                     }
+r 77                 } else { //go down the right
+r 78                     if (finger.right == null) {
+r 79                         if (!this.contains(newNode.p)) {
+r 80                             listOfPoints.add(newNode.p);
+r 81                         }
+r 82                         finger.right = newNode;
+r 83                         treeSize++;
+r 84                         break; //baby
+r 85                     } else {
+r 86                         finger = finger.right;
+r 87                     }
+r 90         }
+r 91     }
+r 92 
+r 93     public Value get(Point p) {
+r 94         Node finger;
+r 95         if(this.isEmpty()){
+r 96             return null;
+r 97         } else {
+r 98             finger = root;
+r 99             while (true) {
+r 100                 //comparing x's
+r 101                 double fingerValue = finger.p.xy(finger.dir);
+r 102                 double pValue = p.xy(finger.dir);
+r 103                 if (pValue < fingerValue) { //go down the left
+r 104                     if (finger.left == null) {
+r 105                         return null;
+r 106                     } else {
+r 107                         if (finger.left.p.equals(p)) {
+r 108                             return finger.v;
+r 109                         }
+r 110                         finger = finger.left;
+r 111                     }
+r 112                 } else { //go down the right
+r 113                     if (finger.right == null) {
+r 114                         return null;
+r 115                     } else {
+r 116                         if (finger.right.p.equals(p)) {
+r 117                             return finger.v;
+r 118                         }
+r 119                         finger = finger.right;
+r 120                     }
+r 121                 }
+r 122             }
+r 126     public boolean contains(Point p) {
+r 128         if (this.isEmpty()) {
+r 129             return false;
++ 132             while (true) {
+r 133                 //comparing x's
++ 136                 if (pValue < fingerValue) { //go down the left
++ 137                     if (finger.left == null) {
++ 138                         return false;
++ 139                     } else {
+r 140                         if (finger.left.p.equals(p)) {
+r 141                             return true;
+r 142                         }
+r 143                         finger = finger.left;
+r 144                     }
+r 145                 } else { //go down the right
+r 146                     if (finger.right == null) {
+r 147                         return false;
+r 148                     } else {
+r 149                         if (finger.right.p.equals(p)) {
+r 150                             return true;
+r 151                         }
+r 152                         finger = finger.right;
+r 153                     }
+r 154                 }
+r 155             }
+r 156         }
+- 160
+- 161
+r 161 
+r 162 
+- 289
+- 289
+- 289
+- 289
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+- 292
+--[ 2018.11.26.23.01.42.474.0 ]--
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+- 127
+r 127         if(get(p)!=null) return true;
+r 128         return false;
+--[ 2018.11.26.23.01.48.617.0 ]--
+- 133
+- 133
+--[ 2018.11.26.23.01.59.469.0 ]--
++ 259 
++ 260     private static PointSearch<Character> createNewPS() {
++ 261         return new PSKDTree<>();
++ 262     }
+--[ 2018.11.26.23.02.01.057.0 ]--
++ 266         ///tests/input100K.txt
++ 267 
++ 268         PointSearch<Character> ps = createNewPS();
++ 269         In in = new In(args[0]);
++ 270 
++ 271         int size = 100000; //change this depending on the size of the input file!
++ 272         double[] dbl,time;
++ 273         dbl = new double[size];
++ 274         int testing_size = 10000;
++ 275         time = new double[testing_size];
++ 276         dbl = in.readAllDoubles();
++ 277         double elapsedTime=0;
++ 278 
++ 279 
++ 280         for(int i = 0; i<size-1; i=i+2){
++ 281             Point p = new Point(dbl[i],dbl[i+1]);
++ 282             ps.put(p,'r');
++ 283         }
++ 284 
++ 285 
++ 286         for(int j = 0; j<testing_size-1;j++) {
++ 287             Stopwatch rolex = new Stopwatch();
++ 288             ps.nearest(Point.uniform());
++ 289             time[j] =rolex.elapsedTime();
++ 290 
++ 291             //StdOut.printf("time elapsed: %f\n", time[j]);
++ 292             elapsedTime += time[j];
++ 293 
++ 294         }
++ 295 
++ 296         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 297 
++ 298 
+--[ 2018.11.26.23.02.11.590.0 ]--
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+- 62
+r 62             while (finger != null) {
+r 63                 double fingerValue = finger.p.xy(finger.dir);
+r 64                 double pValue = p.xy(finger.dir);
+r 65                 if (pValue < fingerValue) {
+r 66                     finger = finger.left;
+r 67                 }
+r 68                 else if (pValue > fingerValue) {
+r 69                     finger = finger.right;
+r 70                 }
+r 71                 else {
+r 72                     return null;
+r 73                 }
+r 74             }
+r 75             finger = newNode;
+r 76             treeSize++;
+r 77             if (!this.contains(newNode.p)) {
+r 78                 listOfPoints.add(newNode.p);
+--[ 2018.11.26.23.02.17.844.0 ]--
+- 89
+r 89             while (finger != null) {
+--[ 2018.11.26.23.02.21.273.0 ]--
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+- 92
+r 92                 if (pValue < fingerValue) {
+r 93                     finger = finger.left;
+r 94                 }
+r 95                 else if (pValue > fingerValue) {
+r 96                     finger = finger.right;
+r 97                 }
+r 98                 else {
+r 99                     return finger.v;
+--[ 2018.11.26.23.02.23.991.0 ]--
++ 102             return null;
+--[ 2018.11.26.23.02.50.089.0 ]--
+:/readme.html
+r 33 Your name: Amish Mishra, Chester Chan, Imani Muya
+r 35 Operating system: Windows 10, and Mac OS
+r 37 Lab computer or your own computer: Personal computers
+r 39 Approx hours to complete assignment: 10 hours
+r 41 Partner's name (if applicable): Team project
+r 43 TA's or Tutor's name (if received help): Edric Yu
+r 45 Did you receive help from your instructor? yes, at some point.
+r 56 Each node held it's own position point, the value that it was assigned, it's partition direction, and reference to the node directly to its left and to its right.
+--[ 2018.11.26.23.02.50.096.0 ]--
+UpdateTree (AD): 26 0
++ /.git/logs/refs/stash
++ /.git/refs/stash
++ /.git/objects/0b/56e3eb450657f584775a34df39197adab902aa
++ /.git/objects/0b/cb356576288cbf384c8b574eec4563e03716ad
++ /.git/objects/16/969f2089f19978f6283f139cc8a26dcc57b973
++ /.git/objects/1f/267b57e44ef46bfb1dda95fca4d20ca7699266
++ /.git/objects/2d/91ab5a078f574b3f43654d336eeff5c116ab7f
++ /.git/objects/32/430c3e8a3b983dcaf069873258a20ccb460f1c
++ /.git/objects/5c/714b7c229b080c45a5ede9f7ece3cedfa68f49
++ /.git/objects/60/deb5710f2ba4f37d56cca5037da055d40f22b3
++ /.git/objects/6a/553c558ca613f4f6e47b53fabc2553acef5e35
++ /.git/objects/74/35578714dc7b90afa50919c2d0d74e0fe4d4fa
++ /.git/objects/a1/86f05348fe02881ad1779a986c8aa365274ddb
++ /.git/objects/a6/87dd0fc6f46abf79c17d9c8029f2b082e36114
++ /.git/objects/a7/f256973a651eaf880995889d1e8cc1a0931572
++ /.git/objects/b1/9c420b60963d64c2b58f5e2d140beb013a2fb8
++ /.git/objects/b1/f3b258a258ba3f36906b6c25b3ffe985ee85b5
++ /.git/objects/c4/dc752bbd2cbf1631ee1b3475d2566003a33ae9
++ /.git/objects/c6/067c8ca9b1f9bae53d606c3b8682f234e22751
++ /.git/objects/ce/e224191935ec8164f35f3259ccb6222ff25258
++ /.git/objects/cf/e46f6090432f0a8c4c565adf7ca4ad0baa35ff
++ /.git/objects/d0/a1a848fb4334356d0f0a91507dbaa2256fc24b
++ /.git/objects/dc/340b3e6f04a7ba6eb3fc59e630986974d26af2
++ /.git/objects/dc/3a2a7bfa32e21f94caf8a4d152a1a70f781ed7
++ /.git/objects/f1/f18be269f204fef2c229385f3ecdb6757638f7
++ /.git/objects/f1/fba191c02dc5800114ab8150861ab78197af63
+
+--[ 2018.11.26.23.13.48.697.0 ]--
+:/src/PSKDTree.java
++ 90             }
++ 91 <<<<<<< HEAD
++ 92 =======
++ 93             finger = newNode;
++ 94             treeSize++;
++ 95             if (!this.contains(newNode.p)) {
++ 96                 listOfPoints.add(newNode.p);
++ 98 >>>>>>> 88dcba6d923e7ec4a415ef64c3f7cbb2272df5e3
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+- 126
+r 126         if(get(p)!=null) return true;
+r 127         return false;
+r 131         return root.v;
++ 258 
++ 259     private static PointSearch<Character> createNewPS() {
++ 260         return new PSKDTree<>();
++ 261     }
++ 265         ///tests/input100K.txt
++ 266 
++ 267         PointSearch<Character> ps = createNewPS();
++ 268         In in = new In(args[0]);
++ 269 
++ 270         int size = 100000; //change this depending on the size of the input file!
++ 271         double[] dbl,time;
++ 272         dbl = new double[size];
++ 273         int testing_size = 10000;
++ 274         time = new double[testing_size];
++ 275         dbl = in.readAllDoubles();
++ 276         double elapsedTime=0;
++ 277 
++ 278 
++ 279         for(int i = 0; i<size-1; i=i+2){
++ 280             Point p = new Point(dbl[i],dbl[i+1]);
++ 281             ps.put(p,'r');
++ 282         }
++ 283 
++ 284 
++ 285         for(int j = 0; j<testing_size-1;j++) {
++ 286             Stopwatch rolex = new Stopwatch();
++ 287             ps.nearest(Point.uniform());
++ 288             time[j] =rolex.elapsedTime();
++ 289 
++ 290             //StdOut.printf("time elapsed: %f\n", time[j]);
++ 291             elapsedTime += time[j];
++ 292 
++ 293         }
++ 294 
++ 295         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 296 
++ 297 
+--[ 2018.11.26.23.13.48.893.0 ]--
+UpdateTree (AD): 9 0
++ /.git/objects/17/638b42c425f8919082f38c338030e91cf11e24
++ /.git/objects/21/78dbc8284117228740ee4e91396816726e7afa
++ /.git/objects/4f/32b9c17fd111d369f0b8012cb293f1f89ff64d
++ /.git/objects/e5/7398c3390f66bf11705636fd3cfea8202c88ca
++ /.git/objects/f8/1c03ccf3f5d1ab28a64e2218671f65136c86cd
++ /.git/MERGE_MSG
++ /.git/MERGE_HEAD
++ /.git/MERGE_MODE
++ /readme_Chan.html
+
+--[ 2018.11.26.23.13.48.896.0 ]--
+InitFile: /readme_Chan.html
+<meta charset="utf-8" lang="en">
+
+                    **P05_KDTrees**
+
+General
+========
+
+For each of your team's implementations, explain the following (where appropriate and applicable):
+
+- details on calling conventions, input and output data formats, limitations, bugs, and special features.
+- negative aspects of your program (limitations, known bugs)
+- positive aspects (extensions, special features)
+- describe your choice of modularization (abstractions), data structures, and algorithms
+- explain anything you did that is likely to be different from what other students may have done
+- justify any design decisions for which the rationale isn't immediately clear
+
+Feel free to modify the structure of this `readme.html` file to fit the current assignment and to fit how you wish to present your findings.
+
+
+
+Submission
+-----------
+
+Create a zip file that contains all of your code, this `readme.html` document, and any additional files of evidence (ex: screenshots, scenes).
+
+If helpful, use folders to divide up the subparts of your submission.
+
+
+
+Student Info
+=============
+
+Your name:
+
+Operating system:
+
+Lab computer or your own computer:
+
+Approx hours to complete assignment:
+
+Partner's name (if applicable):
+
+TA's or Tutor's name (if received help):
+
+Did you receive help from your instructor?
+
+
+
+Assignment Details
+===================
+
+
+Describe the `Node` data type you used to implement the 2d tree data structure.
+
+<!-- Details and screenshots here -->
+
+
+Describe your method for nearest neighbor search in a kd tree.
+
+<!-- Details and screenshots here -->
+
+
+Using the 64-bit memory cost model from the textbook and lecture, give the total memory usage in bytes of your 2d tree data structure as a function of the number of points $N$.
+Use tilde notation to simplify your answer (i.e., keep the leading coefficient and discard lower-order terms).
+Include the memory for all referenced objects (including `Node` and `Point` objects) except for `Value` objects (because the type is unknown and the object is owned by the client).
+Also, include the memory for all referenced objects, including any references to the `Direction` enum.
+
+bytes per `Point`:
+
+-16 bytes object overhead
+-2 doubles x 8 bytes = 16 bytes
+-this is a multiple of 8! we're good.
+
+Point: 32 bytes
+
+bytes per `PSKDTree` of $N$ points: $\sim N$
+
+<!-- Details and screenshots here -->
+private class Node {                // 16 object overhead
+    Point p;                        // 8 bytes reference to a Point
+    Value v;                        // skip
+    Node left, right;               // 2 x 8 bytes reference to a Node = 16 bytes
+    Partition.Direction dir;        // 8 bytes reference to the Partition.Direction boolean
+}                                   // 48 bytes (a multiple of 8!)
+
+put:
+ArrayList<Point> of N Points: 8 bytes for each Point reference * N
+    +
+8 bytes ref to Node * N
+    =16*N
+
+
+
+How many nearest neighbor calculations can your brute-force implementation perform per second for `input100K.txt` (100,000 points) and `input1M.txt` (1 million points), where the query points are random points in the unit square?
+Explain how you determined the operations per second.
+(Do not count the time to read in the points from file or to build the data structure.)
+
+Repeat the question but with the 2d tree implementation.
+
+              file                    |             brute force               |      2d tree
+--------------------------------------|---------------------------------------|---------------
+`input100K.txt` (avg'd of 10k runs)   |                $275$                  |     $1170$
+`input1M.txt` (avg'd over 1000 runs)  |                $22.7$                 |     $54.3$
+
+<!-- Details and screenshots here -->
+We read in the input text files and set the values to a double array. Then, we placed a pair of values from the text file into a new
+Point, which we then inserted into our PointSearch constructor. From there, we ran a large number of tests setting a stop watch before
+running a nearest() call on a random point (made with Point.uniform(). The time is recorded in seconds, so taking the inverse of one of
+these time recordings reports the number of nearest calls that took place in 1 second. I averaged the elapsed time over the testing size
+to get more reliable results, and took the inverse of that to get the # operations/second.
+
+
+Known bugs / limitations
+-------------------------
+
+<!-- Details and screenshots here -->
+
+
+Reflection
+===========
+
+Describe whatever help (if any) that you received.
+Don't include readings, lectures, but do include any help from people (including course staff, lab TAs, classmates, and friends)  and attribute them by name.
+
+<!-- Details and screenshots here -->
+
+
+Since this is an individual assignment, if you worked with a partner, assert below that the work you are turning in is your own work, and that you only did "whiteboard" work as a group.
+Give one sentence explaining what each of you contributed.
+If you used the code from the lab challenge, explain what is shared between you and your lab partner.
+
+<!-- Details and screenshots here -->
+
+
+
+Describe any serious problems you encountered.
+
+<!-- Details and screenshots here -->
+
+
+List any other comments here.
+Feel free to provide any feedback on how much you learned from doing the assignment, and whether you enjoyed doing it.
+
+<!-- Details and screenshots here -->
+
+
+
+
+
+<!--
+
+Leave the following, as this will format your text above to look nice in a wed browser.
+
+-->
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible");</script>
+
+--[ 2018.11.26.23.13.49.148.0 ]--
+:/readme.html
+r 3 **P05_KDTrees**
+r 33 Your name:
+r 35 Operating system:
+r 37 Lab computer or your own computer:
+r 39 Approx hours to complete assignment:
+r 41 Partner's name (if applicable):
+r 43 TA's or Tutor's name (if received help):
+r 45 Did you receive help from your instructor?
+r 56 
++ 70 -16 bytes object overhead
++ 71 -2 doubles x 8 bytes = 16 bytes
+r 72 -this is a multiple of 8! we're good.
+r 74 Point: 32 bytes
++ 76 bytes per `PSKDTree` of $N$ points: $\sim N$
++ 78 <!-- Details and screenshots here -->
++ 79 private class Node {                // 16 object overhead
+r 80 Point p;                        // 8 bytes reference to a Point
+r 81 Value v;                        // skip
+r 82 Node left, right;               // 2 x 8 bytes reference to a Node = 16 bytes
+r 83 Partition.Direction dir;        // 8 bytes reference to the Partition.Direction boolean
+r 84 }                                   // 48 bytes (a multiple of 8!)
++ 86 put:
+r 87 ArrayList<Point> of N Points: 8 bytes for each Point reference * N
+r 88     +
+r 89     8 bytes ref to Node * N
+r 90     =16*N
+r 92 
++ 94     How many nearest neighbor calculations can your brute-force implementation perform per second for `input100K.txt` (100,000 points) and `input1M.txt` (1 million points), where the query points are random points in the unit square?
++ 95     Explain how you determined the operations per second.
++ 96     (Do not count the time to read in the points from file or to build the data structure.)
++ 98     Repeat the question but with the 2d tree implementation.
++ 100     file                    |             brute force               |      2d tree
++ 101     --------------------------------------|---------------------------------------|---------------
+r 102     `input100K.txt` (avg'd of 10k runs)   |                $275$                  |     $1170$
+r 103     `input1M.txt` (avg'd over 1000 runs)  |                $22.7$                 |     $54.3$
++ 105     <!-- Details and screenshots here -->
++ 106     We read in the input text files and set the values to a double array. Then, we placed a pair of values from the text file into a new
++ 107     Point, which we then inserted into our PointSearch constructor. From there, we ran a large number of tests setting a stop watch before
++ 108     running a nearest() call on a random point (made with Point.uniform(). The time is recorded in seconds, so taking the inverse of one of
++ 109     these time recordings reports the number of nearest calls that took place in 1 second. I averaged the elapsed time over the testing size
++ 110     to get more reliable results, and took the inverse of that to get the # operations/second.
+r 111 
++ 113     Known bugs / limitations
++ 114     -------------------------
+r 116     <!-- Details and screenshots here -->
+r 117 
+r 119     Reflection
+r 120     ===========
++ 122 <<<<<<< HEAD
++ 125 =======
++ 126     Describe whatever help (if any) that you received.
++ 127     Don't include readings, lectures, but do include any help from people (including course staff, lab TAs, classmates, and friends)  and attribute them by name.
+r 129     <!-- Details and screenshots here -->
+r 130 >>>>>>> 88dcba6d923e7ec4a415ef64c3f7cbb2272df5e3
+r 131 
++ 133 <<<<<<< HEAD
++ 136 =======
++ 137     Since this is an individual assignment, if you worked with a partner, assert below that the work you are turning in is your own work, and that you only did "whiteboard" work as a group.
++ 138     Give one sentence explaining what each of you contributed.
++ 139     If you used the code from the lab challenge, explain what is shared between you and your lab partner.
++ 140 
++ 141     <!-- Details and screenshots here -->
++ 142 >>>>>>> 88dcba6d923e7ec4a415ef64c3f7cbb2272df5e3
++ 143 
+r 146     Describe any serious problems you encountered.
+r 148     <!-- Details and screenshots here -->
+r 151     List any other comments here.
+r 152     Feel free to provide any feedback on how much you learned from doing the assignment, and whether you enjoyed doing it.
+r 154     <!-- Details and screenshots here -->
+r 160     <!--
+r 162     Leave the following, as this will format your text above to look nice in a wed browser.
+r 164     -->
+r 166     <!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible");</script>
+--[ 2018.11.26.23.13.49.189.0 ]--
+:/src/PSBruteForce.java
++ 95 
+r 97      private static PointSearch<Character> createNewPS() {
+r 98         return new PSBruteForce<>();
++ 100 
++ 104         ///tests/input100K.txt
++ 105 
++ 106         PointSearch<Character> ps = createNewPS();
++ 107         In in = new In(args[0]);
++ 108 
++ 109         int size = 1000000;
++ 110         double[] dbl,time;
++ 111         dbl = new double[size];
++ 112         int testing_size = 100;
++ 113         time = new double[testing_size];
++ 114         dbl = in.readAllDoubles();
++ 115         double elapsedTime=0;
++ 116 
++ 117 
++ 118         for(int i = 0; i<size-1; i=i+2){
++ 119             Point p = new Point(dbl[i],dbl[i+1]);
++ 120             ps.put(p,'r');
++ 121         }
++ 122 
++ 123 
++ 124         for(int j = 0; j<testing_size-1;j++) {
++ 125             Stopwatch rolex = new Stopwatch();
++ 126             ps.nearest(Point.uniform());
++ 127             time[j] =rolex.elapsedTime();
++ 128 
++ 129            // StdOut.printf("time elapsed: %f\n", time[j]);
++ 130             elapsedTime += time[j];
++ 131 
++ 132         }
++ 133 
++ 134         StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
++ 135 
+--[ 2018.11.26.23.14.46.146.0 ]--
+:/src/PSKDTree.java
+- 91
+- 91
+--[ 2018.11.26.23.14.49.243.0 ]--
+- 96
+--[ 2018.11.26.23.18.15.461.0 ]--
+:/readme.html
+r 124 =======
+r 125 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.16.284.0 ]--
+r 125     Describe whatever help (if any) that you received.
+r 126 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.16.730.0 ]--
+r 126     Don't include readings, lectures, but do include any help from people (including course staff, lab TAs, classmates, and friends)  and attribute them by name.
+r 127 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.17.315.0 ]--
+r 127 
+r 128 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.19.443.0 ]--
+r 128     <!-- Details and screenshots here -->
+r 129 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.20.363.0 ]--
+r 128 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+r 129     <!-- Details and screenshots here -->
+--[ 2018.11.26.23.18.21.953.0 ]--
+r 128     <!-- Details and screenshots here -->
+r 129 Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+--[ 2018.11.26.23.18.31.577.0 ]--
+- 130
+- 130
+- 130
+- 130
+--[ 2018.11.26.23.18.37.011.0 ]--
+- 124
+--[ 2018.11.26.23.18.39.906.0 ]--
+- 122
+--[ 2018.11.26.23.18.40.260.0 ]--
+- 121
+r 121     <!-- Details and screenshots here -->
+--[ 2018.11.26.23.18.47.030.0 ]--
+r 126     Edric Yu answered questions and helped with debugging. He noticed that our get function was wrong, because the Burger King locator was returning the wrong locations. That was a pretty funny catch.
+r 127     <!-- Details and screenshots here -->
+r 128     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.51.528.0 ]--
+- 129
+--[ 2018.11.26.23.18.54.190.0 ]--
+r 128     Since this is an individual assignment, if you worked with a partner, assert below that the work you are turning in is your own work, and that you only did "whiteboard" work as a group.
+r 129     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.54.684.0 ]--
+r 129     Give one sentence explaining what each of you contributed.
+r 130     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.54.942.0 ]--
+r 130     If you used the code from the lab challenge, explain what is shared between you and your lab partner.
+r 131     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.55.294.0 ]--
+r 131 
+r 132     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.55.331.0 ]--
+r 132     <!-- Details and screenshots here -->
+r 133     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.55.435.0 ]--
+r 133 >>>>>>> 88dcba6d923e7ec4a415ef64c3f7cbb2272df5e3
+r 134     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.18.56.120.0 ]--
+r 133     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+r 134 >>>>>>> 88dcba6d923e7ec4a415ef64c3f7cbb2272df5e3
+--[ 2018.11.26.23.18.56.680.0 ]--
+r 132     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+r 133     <!-- Details and screenshots here -->
+--[ 2018.11.26.23.18.57.190.0 ]--
+r 132     <!-- Details and screenshots here -->
+r 133     This was a group assignment, soo... We also uses GitHub to work as a group on things.
+--[ 2018.11.26.23.19.01.839.0 ]--
+- 134
+--[ 2018.11.26.23.19.03.453.0 ]--
+- 134
+- 134
+--[ 2018.11.26.23.19.26.112.0 ]--
+- 121
+--[ 2018.11.26.23.19.36.131.0 ]--
++ 123 
+--[ 2018.11.26.23.19.36.187.0 ]--
+r 124     
+--[ 2018.11.26.23.19.38.127.0 ]--
+- 123
+--[ 2018.11.26.23.19.38.295.0 ]--
+- 123
+--[ 2018.11.26.23.19.45.669.0 ]--
++ 126     
+--[ 2018.11.26.23.19.46.155.0 ]--
++ 126     
+--[ 2018.11.26.23.19.50.222.0 ]--
+- 125
+--[ 2018.11.26.23.19.50.629.0 ]--
+- 125
+--[ 2018.11.26.23.20.23.590.0 ]--
+r 125 

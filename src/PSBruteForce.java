@@ -93,11 +93,45 @@ public class PSBruteForce<Value> implements PointSearch<Value> {
     // return whether the KDTree is empty
     public boolean isEmpty() { return tree.isEmpty(); }
 
-    private void test(){
 
+     private static PointSearch<Character> createNewPS() {
+        return new PSBruteForce<>();
     }
+
 
     // place your timing code or unit testing here
     public static void main(String[] args) {
+        ///tests/input100K.txt
+
+        PointSearch<Character> ps = createNewPS();
+        In in = new In(args[0]);
+
+        int size = 1000000;
+        double[] dbl,time;
+        dbl = new double[size];
+        int testing_size = 100;
+        time = new double[testing_size];
+        dbl = in.readAllDoubles();
+        double elapsedTime=0;
+
+
+        for(int i = 0; i<size-1; i=i+2){
+            Point p = new Point(dbl[i],dbl[i+1]);
+            ps.put(p,'r');
+        }
+
+
+        for(int j = 0; j<testing_size-1;j++) {
+            Stopwatch rolex = new Stopwatch();
+            ps.nearest(Point.uniform());
+            time[j] =rolex.elapsedTime();
+
+           // StdOut.printf("time elapsed: %f\n", time[j]);
+            elapsedTime += time[j];
+
+        }
+
+        StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
+
     }
 }
