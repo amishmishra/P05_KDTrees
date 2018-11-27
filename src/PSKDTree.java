@@ -67,7 +67,6 @@ public class PSKDTree<Value> implements PointSearch<Value> {
                     if (finger.left == null) {
                         if (!this.contains(newNode.p)) {
                             listOfPoints.add(newNode.p);
-                            StdOut.println(newNode.p);
                         }
                         finger.left = newNode;
                         treeSize++;
@@ -79,7 +78,6 @@ public class PSKDTree<Value> implements PointSearch<Value> {
                     if (finger.right == null) {
                         if (!this.contains(newNode.p)) {
                             listOfPoints.add(newNode.p);
-                            StdOut.println(newNode.p);
                         }
                         finger.right = newNode;
                         treeSize++;
@@ -221,20 +219,35 @@ public class PSKDTree<Value> implements PointSearch<Value> {
         Comparator<Point> distCalc = p.distanceToComparator();
         if (kNearest.size() < k){
             kNearest.insert(new PointDist(n.p, n.p.dist(p)));
+
         }
         else {
             PointDist minDistP = kNearest.max();
-            if (distCalc.compare(n.p, minDistP.p()) < 0) {//found a new close enough point!
+            if (distCalc.compare(n.p, minDistP.p()) < 0) { //found a new close enough point!
                 kNearest.insert(new PointDist(n.p, n.p.dist(p)));
                 if (kNearest.size() > k) {
                     kNearest.delMax();
                 }
             }
         }
+
         //TODO: Pruning
-        kNearestTraverse(n.left, p, kNearest, k);
-        kNearestTraverse(n.right, p, kNearest, k);
+        double distToPartition = n.p.xy(n.dir) - p.xy(n.dir);
+        if (distToPartition < 0 ){
+            kNearestTraverse(n.right, p, kNearest, k);
+            if (kNearest.max().d() > distToPartition) {
+                kNearestTraverse(n.left, p, kNearest, k);
+            }
+        } else {
+            kNearestTraverse(n.left, p, kNearest, k);
+            if (kNearest.max().d() > distToPartition) {
+                kNearestTraverse(n.right, p, kNearest, k);
+            }
+        }
     }
+
+
+
     // return the Point that is closest to the given Point
     public Point nearest(Point p) {
         Node n = root;
