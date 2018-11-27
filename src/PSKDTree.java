@@ -124,42 +124,12 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     public boolean contains(Point p) {
-        Node finger;
-        if (this.isEmpty()) {
-            return false;
-        } else {
-            finger = root;
-            while (true) {
-                //comparing x's
-                double fingerValue = finger.p.xy(finger.dir);
-                double pValue = p.xy(finger.dir);
-                if (pValue < fingerValue) { //go down the left
-                    if (finger.left == null) {
-                        return false;
-                    } else {
-                        if (finger.left.p.equals(p)) {
-                            return true;
-                        }
-                        finger = finger.left;
-                    }
-                } else { //go down the right
-                    if (finger.right == null) {
-                        return false;
-                    } else {
-                        if (finger.right.p.equals(p)) {
-                            return true;
-                        }
-                        finger = finger.right;
-                    }
-                }
-            }
-        }
+        if(get(p)!=null) return true;
+        return false;
     }
 
     public Value getNearest(Point p) {
         return root.v;
-
-
     }
 
     // return an iterable of all points in collection
@@ -287,8 +257,45 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     public boolean isEmpty() {
         return root==null; }
 
+    private static PointSearch<Character> createNewPS() {
+        return new PSKDTree<>();
+    }
+
     // place your timing code or unit testing here
     public static void main(String[] args) {
+        ///tests/input100K.txt
+
+        PointSearch<Character> ps = createNewPS();
+        In in = new In(args[0]);
+
+        int size = 100000; //change this depending on the size of the input file!
+        double[] dbl,time;
+        dbl = new double[size];
+        int testing_size = 10000;
+        time = new double[testing_size];
+        dbl = in.readAllDoubles();
+        double elapsedTime=0;
+
+
+        for(int i = 0; i<size-1; i=i+2){
+            Point p = new Point(dbl[i],dbl[i+1]);
+            ps.put(p,'r');
+        }
+
+
+        for(int j = 0; j<testing_size-1;j++) {
+            Stopwatch rolex = new Stopwatch();
+            ps.nearest(Point.uniform());
+            time[j] =rolex.elapsedTime();
+
+            //StdOut.printf("time elapsed: %f\n", time[j]);
+            elapsedTime += time[j];
+
+        }
+
+        StdOut.printf("avg nearest calcs per sec: %f\n", 1/(elapsedTime/testing_size));
+
+
     }
 
 }
