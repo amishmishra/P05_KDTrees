@@ -40605,3 +40605,1037 @@ r 124
 - 125
 --[ 2018.11.26.23.20.23.590.0 ]--
 r 125 
+--[ 2018.11.26.23.23.01.067.0 ]--
+UpdateTree (AD): 13 4
+- /readme_Chan.html
+- /.git/MERGE_MODE
+- /.git/MERGE_MSG
+- /.git/MERGE_HEAD
++ /.git/objects/06/997549a8da4323eee90381b892371a58780790
++ /.git/objects/18/21b84143993fbbe10a9c26a8ce13e9923613b1
++ /.git/objects/21/9357914b6e15bbd67bdad6ad8b2e3f08a4c515
++ /.git/objects/25/39218fcaf422ddbe6de9d6682765b398af3879
++ /.git/objects/84/29de24762f7dd3710703b9eb48e61bd50fcd29
++ /.git/objects/9c/95cf9fbf3d7ba97b387a974fae2697a2c42cb1
++ /.git/objects/a0/443d824441814b9196b54ea102f3fd2f92761c
++ /.git/objects/a4/256b86c682256b78c9a9e27cb8031ed4231efc
++ /.git/objects/c4/0261fa19f83997ea96fb76d52134816d0b4d31
++ /.git/objects/cb/98a0feb337d03f73f3e25c5c1d96a617b41adc
++ /.git/objects/d7/415acc5e7cc30f401690b9d6d9427a7f279f60
++ /.git/objects/e8/fe36a75b0ecec37a8390348463ad332a4c4d38
++ /.git/objects/fb/914a598c11c1ff175d15c49a1be6cf8660eaa8
+
+--[ 2018.11.26.23.23.18.427.0 ]--
+CompilationStatus (AEW): 0 0 0
+--[ 2018.11.26.23.23.51.287.0 ]--
+:/src/PSKDTree.java
+r 128         return g;
+--[ 2018.11.26.23.23.53.018.0 ]--
+r 128         return get;
+--[ 2018.11.26.23.23.53.044.0 ]--
+r 128         return get();
+--[ 2018.11.26.23.24.00.043.0 ]--
+r 128         return get(n);
+--[ 2018.11.26.23.24.00.314.0 ]--
+r 128         return get(ne);
+--[ 2018.11.26.23.24.00.846.0 ]--
+r 128         return get(nearest);
+--[ 2018.11.26.23.24.00.874.0 ]--
+r 128         return get(nearest());
+--[ 2018.11.26.23.24.01.831.0 ]--
+r 128         return get(nearest(p));
+--[ 2018.11.26.23.24.09.391.0 ]--
+CompilationStatus (AEW): 0 0 0
+--[ 2018.11.26.23.26.58.689.0 ]--
+:/readme.html
+r 56 O
+--[ 2018.11.26.23.26.59.000.0 ]--
+r 56 Ou
+--[ 2018.11.26.23.26.59.158.0 ]--
+r 56 Our
+--[ 2018.11.26.23.26.59.299.0 ]--
+r 56 Our 
+--[ 2018.11.26.23.26.59.748.0 ]--
+r 56 Our N
+--[ 2018.11.26.23.26.59.843.0 ]--
+r 56 Our No
+--[ 2018.11.26.23.27.00.047.0 ]--
+r 56 Our Nof
+--[ 2018.11.26.23.27.00.151.0 ]--
+r 56 Our Nofe
+--[ 2018.11.26.23.27.00.349.0 ]--
+r 56 Our Nof
+--[ 2018.11.26.23.27.00.528.0 ]--
+r 56 Our No
+--[ 2018.11.26.23.27.00.719.0 ]--
+r 56 Our N
+--[ 2018.11.26.23.27.00.854.0 ]--
+r 56 Our 
+--[ 2018.11.26.23.27.05.230.0 ]--
+r 56 Our n
+--[ 2018.11.26.23.27.05.335.0 ]--
+r 56 Our no
+--[ 2018.11.26.23.27.05.472.0 ]--
+r 56 Our nof
+--[ 2018.11.26.23.27.05.689.0 ]--
+r 56 Our nofe
+--[ 2018.11.26.23.27.06.014.0 ]--
+r 56 Our nof
+--[ 2018.11.26.23.27.06.264.0 ]--
+r 56 Our no
+--[ 2018.11.26.23.27.06.671.0 ]--
+r 56 Our n
+--[ 2018.11.26.23.27.06.858.0 ]--
+r 56 Our 
+--[ 2018.11.26.23.27.07.405.0 ]--
+r 56 Our N
+--[ 2018.11.26.23.27.07.520.0 ]--
+r 56 Our No
+--[ 2018.11.26.23.27.07.645.0 ]--
+r 56 Our Nod
+--[ 2018.11.26.23.27.07.752.0 ]--
+r 56 Our Node
+--[ 2018.11.26.23.27.07.975.0 ]--
+r 56 Our Node 
+--[ 2018.11.26.23.27.08.458.0 ]--
+r 56 Our Node c
+--[ 2018.11.26.23.27.08.622.0 ]--
+r 56 Our Node ca
+--[ 2018.11.26.23.27.08.901.0 ]--
+r 56 Our Node c
+--[ 2018.11.26.23.27.09.185.0 ]--
+r 56 Our Node co
+--[ 2018.11.26.23.27.09.297.0 ]--
+r 56 Our Node con
+--[ 2018.11.26.23.27.09.423.0 ]--
+r 56 Our Node cont
+--[ 2018.11.26.23.27.12.990.0 ]--
+r 56 Our Node conta
+--[ 2018.11.26.23.27.13.072.0 ]--
+r 56 Our Node contai
+--[ 2018.11.26.23.27.13.201.0 ]--
+r 56 Our Node contain
+--[ 2018.11.26.23.27.13.283.0 ]--
+r 56 Our Node containr
+--[ 2018.11.26.23.27.13.505.0 ]--
+r 56 Our Node containrd
+--[ 2018.11.26.23.27.13.712.0 ]--
+r 56 Our Node containr
+--[ 2018.11.26.23.27.13.867.0 ]--
+r 56 Our Node contain
+--[ 2018.11.26.23.27.13.949.0 ]--
+r 56 Our Node containe
+--[ 2018.11.26.23.27.14.129.0 ]--
+r 56 Our Node contained
+--[ 2018.11.26.23.27.14.241.0 ]--
+r 56 Our Node contained 
+--[ 2018.11.26.23.27.14.444.0 ]--
+r 56 Our Node contained t
+--[ 2018.11.26.23.27.14.545.0 ]--
+r 56 Our Node contained th
+--[ 2018.11.26.23.27.14.756.0 ]--
+r 56 Our Node contained th 
+--[ 2018.11.26.23.27.14.896.0 ]--
+r 56 Our Node contained th e
+--[ 2018.11.26.23.27.15.688.0 ]--
+r 56 Our Node contained th 
+--[ 2018.11.26.23.27.15.821.0 ]--
+r 56 Our Node contained th
+--[ 2018.11.26.23.27.16.000.0 ]--
+r 56 Our Node contained the
+--[ 2018.11.26.23.27.54.027.0 ]--
+r 56 Our Node contained the 
+--[ 2018.11.26.23.27.54.669.0 ]--
+r 56 Our Node contained the l
+--[ 2018.11.26.23.27.54.881.0 ]--
+r 56 Our Node contained the lo
+--[ 2018.11.26.23.27.54.924.0 ]--
+r 56 Our Node contained the loc
+--[ 2018.11.26.23.27.55.074.0 ]--
+r 56 Our Node contained the loca
+--[ 2018.11.26.23.27.55.242.0 ]--
+r 56 Our Node contained the locat
+--[ 2018.11.26.23.27.55.292.0 ]--
+r 56 Our Node contained the locati
+--[ 2018.11.26.23.27.55.404.0 ]--
+r 56 Our Node contained the locatio
+--[ 2018.11.26.23.27.55.524.0 ]--
+r 56 Our Node contained the location
+--[ 2018.11.26.23.27.55.689.0 ]--
+r 56 Our Node contained the location 
+--[ 2018.11.26.23.27.55.761.0 ]--
+r 56 Our Node contained the location o
+--[ 2018.11.26.23.27.55.900.0 ]--
+r 56 Our Node contained the location of
+--[ 2018.11.26.23.27.56.071.0 ]--
+r 56 Our Node contained the location of 
+--[ 2018.11.26.23.27.56.506.0 ]--
+r 56 Our Node contained the location of t
+--[ 2018.11.26.23.27.56.687.0 ]--
+r 56 Our Node contained the location of th
+--[ 2018.11.26.23.27.56.796.0 ]--
+r 56 Our Node contained the location of the
+--[ 2018.11.26.23.27.56.895.0 ]--
+r 56 Our Node contained the location of the 
+--[ 2018.11.26.23.27.57.089.0 ]--
+r 56 Our Node contained the location of the p
+--[ 2018.11.26.23.27.57.240.0 ]--
+r 56 Our Node contained the location of the po
+--[ 2018.11.26.23.27.57.750.0 ]--
+r 56 Our Node contained the location of the poi
+--[ 2018.11.26.23.27.57.958.0 ]--
+r 56 Our Node contained the location of the poin
+--[ 2018.11.26.23.27.58.048.0 ]--
+r 56 Our Node contained the location of the point
+--[ 2018.11.26.23.27.58.202.0 ]--
+r 56 Our Node contained the location of the point,
+--[ 2018.11.26.23.27.58.374.0 ]--
+r 56 Our Node contained the location of the point, 
+--[ 2018.11.26.23.27.58.504.0 ]--
+r 56 Our Node contained the location of the point, t
+--[ 2018.11.26.23.27.58.606.0 ]--
+r 56 Our Node contained the location of the point, th
+--[ 2018.11.26.23.27.58.766.0 ]--
+r 56 Our Node contained the location of the point, the
+--[ 2018.11.26.23.27.58.834.0 ]--
+r 56 Our Node contained the location of the point, the 
+--[ 2018.11.26.23.28.04.389.0 ]--
+r 56 Our Node contained the location of the point, the v
+--[ 2018.11.26.23.28.04.454.0 ]--
+r 56 Our Node contained the location of the point, the va
+--[ 2018.11.26.23.28.04.572.0 ]--
+r 56 Our Node contained the location of the point, the val
+--[ 2018.11.26.23.28.04.735.0 ]--
+r 56 Our Node contained the location of the point, the valu
+--[ 2018.11.26.23.28.04.853.0 ]--
+r 56 Our Node contained the location of the point, the value
+--[ 2018.11.26.23.28.05.015.0 ]--
+r 56 Our Node contained the location of the point, the value 
+--[ 2018.11.26.23.28.05.127.0 ]--
+r 56 Our Node contained the location of the point, the value a
+--[ 2018.11.26.23.28.05.348.0 ]--
+r 56 Our Node contained the location of the point, the value as
+--[ 2018.11.26.23.28.05.514.0 ]--
+r 56 Our Node contained the location of the point, the value ass
+--[ 2018.11.26.23.28.05.706.0 ]--
+r 56 Our Node contained the location of the point, the value assi
+--[ 2018.11.26.23.28.05.855.0 ]--
+r 56 Our Node contained the location of the point, the value assig
+--[ 2018.11.26.23.28.05.936.0 ]--
+r 56 Our Node contained the location of the point, the value assign
+--[ 2018.11.26.23.28.06.622.0 ]--
+r 56 Our Node contained the location of the point, the value assigne
+--[ 2018.11.26.23.28.06.814.0 ]--
+r 56 Our Node contained the location of the point, the value assigned
+--[ 2018.11.26.23.28.06.921.0 ]--
+r 56 Our Node contained the location of the point, the value assigned 
+--[ 2018.11.26.23.28.07.023.0 ]--
+r 56 Our Node contained the location of the point, the value assigned t
+--[ 2018.11.26.23.28.07.125.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to
+--[ 2018.11.26.23.28.07.232.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to 
+--[ 2018.11.26.23.28.07.276.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to t
+--[ 2018.11.26.23.28.07.403.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to th
+--[ 2018.11.26.23.28.07.520.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the
+--[ 2018.11.26.23.28.07.611.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the 
+--[ 2018.11.26.23.28.08.026.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the n
+--[ 2018.11.26.23.28.08.152.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the no
+--[ 2018.11.26.23.28.08.253.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the nod
+--[ 2018.11.26.23.28.08.420.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node
+--[ 2018.11.26.23.28.08.590.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node,
+--[ 2018.11.26.23.28.08.758.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, 
+--[ 2018.11.26.23.28.08.864.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, a
+--[ 2018.11.26.23.28.09.127.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as
+--[ 2018.11.26.23.28.09.371.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as 
+--[ 2018.11.26.23.28.09.722.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as
+--[ 2018.11.26.23.28.09.877.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, a
+--[ 2018.11.26.23.28.10.007.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, 
+--[ 2018.11.26.23.28.15.643.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, a
+--[ 2018.11.26.23.28.15.780.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as
+--[ 2018.11.26.23.28.15.949.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as 
+--[ 2018.11.26.23.28.16.096.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as w
+--[ 2018.11.26.23.28.16.269.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as we
+--[ 2018.11.26.23.28.16.391.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as wel
+--[ 2018.11.26.23.28.16.533.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well
+--[ 2018.11.26.23.28.16.666.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well 
+--[ 2018.11.26.23.28.16.741.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well a
+--[ 2018.11.26.23.28.16.825.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as
+--[ 2018.11.26.23.28.17.017.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as 
+--[ 2018.11.26.23.28.17.295.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as r
+--[ 2018.11.26.23.28.17.405.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as re
+--[ 2018.11.26.23.28.17.623.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as ref
+--[ 2018.11.26.23.28.17.742.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refe
+--[ 2018.11.26.23.28.18.002.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refen
+--[ 2018.11.26.23.28.18.937.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refe
+--[ 2018.11.26.23.28.19.319.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refee
+--[ 2018.11.26.23.28.19.652.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refe
+--[ 2018.11.26.23.28.19.769.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refer
+--[ 2018.11.26.23.28.19.962.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as refere
+--[ 2018.11.26.23.28.20.196.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referen
+--[ 2018.11.26.23.28.20.323.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenc
+--[ 2018.11.26.23.28.20.423.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as reference
+--[ 2018.11.26.23.28.20.652.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced
+--[ 2018.11.26.23.28.20.818.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced 
+--[ 2018.11.26.23.28.20.911.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced t
+--[ 2018.11.26.23.28.21.005.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced to
+--[ 2018.11.26.23.28.21.114.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced to 
+--[ 2018.11.26.23.28.21.410.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced to
+--[ 2018.11.26.23.28.21.577.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced t
+--[ 2018.11.26.23.28.21.728.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced 
+--[ 2018.11.26.23.28.21.873.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as referenced
+--[ 2018.11.26.23.28.22.019.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as reference
+--[ 2018.11.26.23.28.22.138.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references
+--[ 2018.11.26.23.28.22.250.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references 
+--[ 2018.11.26.23.28.22.385.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references t
+--[ 2018.11.26.23.28.22.457.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to
+--[ 2018.11.26.23.28.22.549.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to 
+--[ 2018.11.26.23.28.22.608.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to t
+--[ 2018.11.26.23.28.22.730.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to th
+--[ 2018.11.26.23.28.22.815.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the
+--[ 2018.11.26.23.28.22.911.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the 
+--[ 2018.11.26.23.28.23.133.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the l
+--[ 2018.11.26.23.28.23.488.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the le
+--[ 2018.11.26.23.28.23.684.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the led
+--[ 2018.11.26.23.28.24.069.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the le
+--[ 2018.11.26.23.28.24.194.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the lef
+--[ 2018.11.26.23.28.24.408.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left
+--[ 2018.11.26.23.28.24.534.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left 
+--[ 2018.11.26.23.28.24.649.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left a
+--[ 2018.11.26.23.28.24.741.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left an
+--[ 2018.11.26.23.28.24.878.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and
+--[ 2018.11.26.23.28.24.977.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and 
+--[ 2018.11.26.23.28.25.207.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and r
+--[ 2018.11.26.23.28.25.319.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and ri
+--[ 2018.11.26.23.28.25.804.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and rih
+--[ 2018.11.26.23.28.26.134.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and ri
+--[ 2018.11.26.23.28.26.669.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left and r
+--[ 2018.11.26.23.28.26.762.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left an
+--[ 2018.11.26.23.28.26.818.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left 
+--[ 2018.11.26.23.28.26.883.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the left
+--[ 2018.11.26.23.28.27.005.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the lef
+--[ 2018.11.26.23.28.27.150.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the le
+--[ 2018.11.26.23.28.27.308.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the l
+--[ 2018.11.26.23.28.27.421.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the 
+--[ 2018.11.26.23.28.27.976.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the n
+--[ 2018.11.26.23.28.28.121.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the no
+--[ 2018.11.26.23.28.28.262.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nod
+--[ 2018.11.26.23.28.28.451.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the node
+--[ 2018.11.26.23.28.28.624.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes
+--[ 2018.11.26.23.28.28.769.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes 
+--[ 2018.11.26.23.28.28.862.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes o
+--[ 2018.11.26.23.28.28.980.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on
+--[ 2018.11.26.23.28.29.137.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on 
+--[ 2018.11.26.23.28.29.406.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on i
+--[ 2018.11.26.23.28.29.535.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on it
+--[ 2018.11.26.23.28.29.767.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its
+--[ 2018.11.26.23.28.29.915.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its 
+--[ 2018.11.26.23.28.30.255.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its d
+--[ 2018.11.26.23.28.30.455.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its di
+--[ 2018.11.26.23.28.30.562.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its dir
+--[ 2018.11.26.23.28.30.716.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its dire
+--[ 2018.11.26.23.28.30.947.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direc
+--[ 2018.11.26.23.28.31.208.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct
+--[ 2018.11.26.23.28.31.334.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct 
+--[ 2018.11.26.23.28.31.397.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct l
+--[ 2018.11.26.23.28.31.528.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct le
+--[ 2018.11.26.23.28.32.307.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct lef
+--[ 2018.11.26.23.28.32.529.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left
+--[ 2018.11.26.23.28.32.693.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left 
+--[ 2018.11.26.23.28.32.788.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left a
+--[ 2018.11.26.23.28.32.928.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left an
+--[ 2018.11.26.23.28.33.053.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and
+--[ 2018.11.26.23.28.33.183.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and 
+--[ 2018.11.26.23.28.33.284.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and r
+--[ 2018.11.26.23.28.33.379.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and ri
+--[ 2018.11.26.23.28.33.539.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and rig
+--[ 2018.11.26.23.28.33.635.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and righ
+--[ 2018.11.26.23.28.33.786.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right
+--[ 2018.11.26.23.28.33.883.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right,
+--[ 2018.11.26.23.28.34.043.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, 
+--[ 2018.11.26.23.28.34.133.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, a
+--[ 2018.11.26.23.28.34.300.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as
+--[ 2018.11.26.23.28.34.476.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as 
+--[ 2018.11.26.23.28.48.307.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as d
+--[ 2018.11.26.23.28.48.440.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as di
+--[ 2018.11.26.23.28.48.544.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as dir
+--[ 2018.11.26.23.28.49.012.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as di
+--[ 2018.11.26.23.28.49.151.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as d
+--[ 2018.11.26.23.28.49.319.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as 
+--[ 2018.11.26.23.28.49.448.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as
+--[ 2018.11.26.23.28.52.059.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as 
+--[ 2018.11.26.23.29.00.809.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, as
+--[ 2018.11.26.23.29.00.940.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, a
+--[ 2018.11.26.23.29.02.652.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, 
+--[ 2018.11.26.23.29.10.495.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, a
+--[ 2018.11.26.23.29.10.642.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, an
+--[ 2018.11.26.23.29.10.725.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and
+--[ 2018.11.26.23.29.10.846.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and 
+--[ 2018.11.26.23.29.10.951.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and t
+--[ 2018.11.26.23.29.11.034.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and th
+--[ 2018.11.26.23.29.11.155.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the
+--[ 2018.11.26.23.29.11.302.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the 
+--[ 2018.11.26.23.29.11.996.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the d
+--[ 2018.11.26.23.29.12.105.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the di
+--[ 2018.11.26.23.29.12.235.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the dir
+--[ 2018.11.26.23.29.12.411.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the dire
+--[ 2018.11.26.23.29.12.603.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direc
+--[ 2018.11.26.23.29.16.197.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direct
+--[ 2018.11.26.23.29.16.386.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the directi
+--[ 2018.11.26.23.29.16.423.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the directio
+--[ 2018.11.26.23.29.16.591.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction
+--[ 2018.11.26.23.29.16.775.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction 
+--[ 2018.11.26.23.29.22.406.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction h
+--[ 2018.11.26.23.29.22.722.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction 
+--[ 2018.11.26.23.29.22.779.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction w
+--[ 2018.11.26.23.29.22.950.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction wh
+--[ 2018.11.26.23.29.23.034.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction whi
+--[ 2018.11.26.23.29.23.175.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction whic
+--[ 2018.11.26.23.29.23.263.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which
+--[ 2018.11.26.23.29.23.896.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which 
+--[ 2018.11.26.23.29.24.038.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which i
+--[ 2018.11.26.23.29.24.156.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is
+--[ 2018.11.26.23.29.24.262.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is 
+--[ 2018.11.26.23.29.24.380.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is e
+--[ 2018.11.26.23.29.24.703.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is ei
+--[ 2018.11.26.23.29.24.822.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is eit
+--[ 2018.11.26.23.29.24.908.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is eith
+--[ 2018.11.26.23.29.24.979.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is eithe
+--[ 2018.11.26.23.29.25.106.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either
+--[ 2018.11.26.23.29.25.230.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either 
+--[ 2018.11.26.23.29.25.373.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either l
+--[ 2018.11.26.23.29.25.522.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either le
+--[ 2018.11.26.23.29.25.668.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either lef
+--[ 2018.11.26.23.29.25.880.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left
+--[ 2018.11.26.23.29.26.348.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left 
+--[ 2018.11.26.23.29.26.489.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left r
+--[ 2018.11.26.23.29.26.637.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left ri
+--[ 2018.11.26.23.29.26.743.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left rig
+--[ 2018.11.26.23.29.26.833.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left righ
+--[ 2018.11.26.23.29.26.973.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right
+--[ 2018.11.26.23.29.27.021.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right 
+--[ 2018.11.26.23.29.27.130.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right o
+--[ 2018.11.26.23.29.27.357.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right ou
+--[ 2018.11.26.23.29.27.514.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our
+--[ 2018.11.26.23.29.27.690.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our 
+--[ 2018.11.26.23.29.28.275.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our
+--[ 2018.11.26.23.29.28.393.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right ou
+--[ 2018.11.26.23.29.28.526.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our
+--[ 2018.11.26.23.29.28.635.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our 
+--[ 2018.11.26.23.29.29.222.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right our
+--[ 2018.11.26.23.29.29.359.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right ou
+--[ 2018.11.26.23.29.29.493.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right o
+--[ 2018.11.26.23.29.29.650.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or
+--[ 2018.11.26.23.29.29.761.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or 
+--[ 2018.11.26.23.29.30.572.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p
+--[ 2018.11.26.23.29.30.798.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p 
+--[ 2018.11.26.23.29.30.934.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p d
+--[ 2018.11.26.23.29.31.025.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p do
+--[ 2018.11.26.23.29.31.159.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p dow
+--[ 2018.11.26.23.29.31.299.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p down
+--[ 2018.11.26.23.29.31.594.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p down.
+--[ 2018.11.26.23.29.31.962.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p down. 
+--[ 2018.11.26.23.29.33.117.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p down.
+--[ 2018.11.26.23.29.33.299.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p down
+--[ 2018.11.26.23.29.33.439.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p dow
+--[ 2018.11.26.23.29.33.609.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p do
+--[ 2018.11.26.23.29.33.777.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p d
+--[ 2018.11.26.23.29.33.915.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p 
+--[ 2018.11.26.23.29.34.091.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or p
+--[ 2018.11.26.23.29.34.206.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or 
+--[ 2018.11.26.23.29.34.859.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or u
+--[ 2018.11.26.23.29.34.963.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up
+--[ 2018.11.26.23.29.35.123.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up 
+--[ 2018.11.26.23.29.35.810.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up d
+--[ 2018.11.26.23.29.35.915.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up do
+--[ 2018.11.26.23.29.36.042.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up dow
+--[ 2018.11.26.23.29.36.169.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up down
+--[ 2018.11.26.23.29.37.175.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up down.
+--[ 2018.11.26.23.29.37.777.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up down. 
+--[ 2018.11.26.23.29.48.292.0 ]--
+r 33 Your name: 
+--[ 2018.11.26.23.29.49.395.0 ]--
+r 33 Your name: A
+--[ 2018.11.26.23.29.49.607.0 ]--
+r 33 Your name: Am
+--[ 2018.11.26.23.29.49.761.0 ]--
+r 33 Your name: Ami
+--[ 2018.11.26.23.29.49.828.0 ]--
+r 33 Your name: Amis
+--[ 2018.11.26.23.29.49.990.0 ]--
+r 33 Your name: Amish
+--[ 2018.11.26.23.29.50.161.0 ]--
+r 33 Your name: Amish 
+--[ 2018.11.26.23.29.50.379.0 ]--
+r 33 Your name: Amish M
+--[ 2018.11.26.23.29.50.555.0 ]--
+r 33 Your name: Amish Mi
+--[ 2018.11.26.23.29.50.655.0 ]--
+r 33 Your name: Amish Mis
+--[ 2018.11.26.23.29.50.756.0 ]--
+r 33 Your name: Amish Mish
+--[ 2018.11.26.23.29.51.241.0 ]--
+r 33 Your name: Amish Mishr
+--[ 2018.11.26.23.29.51.495.0 ]--
+r 33 Your name: Amish Mishra
+--[ 2018.11.26.23.29.51.707.0 ]--
+r 33 Your name: Amish Mishra,
+--[ 2018.11.26.23.29.51.892.0 ]--
+r 33 Your name: Amish Mishra, 
+--[ 2018.11.26.23.29.53.129.0 ]--
+r 33 Your name: Amish Mishra, C
+--[ 2018.11.26.23.29.53.268.0 ]--
+r 33 Your name: Amish Mishra, Ch
+--[ 2018.11.26.23.29.53.657.0 ]--
+r 33 Your name: Amish Mishra, Che
+--[ 2018.11.26.23.29.53.862.0 ]--
+r 33 Your name: Amish Mishra, Ches
+--[ 2018.11.26.23.29.53.953.0 ]--
+r 33 Your name: Amish Mishra, Chest
+--[ 2018.11.26.23.29.54.110.0 ]--
+r 33 Your name: Amish Mishra, Cheste
+--[ 2018.11.26.23.29.54.204.0 ]--
+r 33 Your name: Amish Mishra, Chester
+--[ 2018.11.26.23.29.54.368.0 ]--
+r 33 Your name: Amish Mishra, Chester 
+--[ 2018.11.26.23.29.54.668.0 ]--
+r 33 Your name: Amish Mishra, Chester C
+--[ 2018.11.26.23.29.54.786.0 ]--
+r 33 Your name: Amish Mishra, Chester Ch
+--[ 2018.11.26.23.29.54.878.0 ]--
+r 33 Your name: Amish Mishra, Chester Cha
+--[ 2018.11.26.23.29.55.001.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan
+--[ 2018.11.26.23.29.55.695.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan,
+--[ 2018.11.26.23.29.55.893.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, 
+--[ 2018.11.26.23.29.56.363.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, I
+--[ 2018.11.26.23.29.56.475.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Im
+--[ 2018.11.26.23.29.56.577.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Ima
+--[ 2018.11.26.23.29.56.662.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Iman
+--[ 2018.11.26.23.29.56.730.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani
+--[ 2018.11.26.23.29.56.831.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani 
+--[ 2018.11.26.23.29.56.997.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani M
+--[ 2018.11.26.23.29.57.187.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani Mu
+--[ 2018.11.26.23.29.57.273.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani Muy
+--[ 2018.11.26.23.29.57.384.0 ]--
+r 33 Your name: Amish Mishra, Chester Chan, Imani Muya
+--[ 2018.11.26.23.29.59.022.0 ]--
+r 35 Operating system: 
+--[ 2018.11.26.23.29.59.641.0 ]--
+r 35 Operating system: W
+--[ 2018.11.26.23.29.59.784.0 ]--
+r 35 Operating system: Wi
+--[ 2018.11.26.23.29.59.943.0 ]--
+r 35 Operating system: Win
+--[ 2018.11.26.23.30.00.037.0 ]--
+r 35 Operating system: Wind
+--[ 2018.11.26.23.30.00.209.0 ]--
+r 35 Operating system: Windo
+--[ 2018.11.26.23.30.00.585.0 ]--
+r 35 Operating system: Window
+--[ 2018.11.26.23.30.00.939.0 ]--
+r 35 Operating system: Window 
+--[ 2018.11.26.23.30.01.266.0 ]--
+r 35 Operating system: Window
+--[ 2018.11.26.23.30.01.330.0 ]--
+r 35 Operating system: Windows
+--[ 2018.11.26.23.30.01.449.0 ]--
+r 35 Operating system: Windows 
+--[ 2018.11.26.23.30.02.091.0 ]--
+r 35 Operating system: Windows 1
+--[ 2018.11.26.23.30.02.201.0 ]--
+r 35 Operating system: Windows 10
+--[ 2018.11.26.23.30.02.275.0 ]--
+r 35 Operating system: Windows 10 
+--[ 2018.11.26.23.30.02.405.0 ]--
+r 35 Operating system: Windows 10 a
+--[ 2018.11.26.23.30.02.598.0 ]--
+r 35 Operating system: Windows 10 an
+--[ 2018.11.26.23.30.02.703.0 ]--
+r 35 Operating system: Windows 10 and
+--[ 2018.11.26.23.30.02.809.0 ]--
+r 35 Operating system: Windows 10 and 
+--[ 2018.11.26.23.30.03.048.0 ]--
+r 35 Operating system: Windows 10 and M
+--[ 2018.11.26.23.30.03.418.0 ]--
+r 35 Operating system: Windows 10 and Ma
+--[ 2018.11.26.23.30.03.676.0 ]--
+r 35 Operating system: Windows 10 and Mac
+--[ 2018.11.26.23.30.03.906.0 ]--
+r 35 Operating system: Windows 10 and Mac 
+--[ 2018.11.26.23.30.04.405.0 ]--
+r 35 Operating system: Windows 10 and Mac O
+--[ 2018.11.26.23.30.04.521.0 ]--
+r 35 Operating system: Windows 10 and Mac OS
+--[ 2018.11.26.23.30.06.282.0 ]--
+r 37 Lab computer or your own computer: 
+--[ 2018.11.26.23.30.07.509.0 ]--
+r 37 Lab computer or your own computer: p
+--[ 2018.11.26.23.30.07.724.0 ]--
+r 37 Lab computer or your own computer: pe
+--[ 2018.11.26.23.30.07.802.0 ]--
+r 37 Lab computer or your own computer: per
+--[ 2018.11.26.23.30.08.025.0 ]--
+r 37 Lab computer or your own computer: pers
+--[ 2018.11.26.23.30.08.085.0 ]--
+r 37 Lab computer or your own computer: perso
+--[ 2018.11.26.23.30.08.185.0 ]--
+r 37 Lab computer or your own computer: person
+--[ 2018.11.26.23.30.08.457.0 ]--
+r 37 Lab computer or your own computer: persona
+--[ 2018.11.26.23.30.08.563.0 ]--
+r 37 Lab computer or your own computer: personal
+--[ 2018.11.26.23.30.08.659.0 ]--
+r 37 Lab computer or your own computer: personal 
+--[ 2018.11.26.23.30.09.002.0 ]--
+r 37 Lab computer or your own computer: personal c
+--[ 2018.11.26.23.30.09.071.0 ]--
+r 37 Lab computer or your own computer: personal co
+--[ 2018.11.26.23.30.09.197.0 ]--
+r 37 Lab computer or your own computer: personal com
+--[ 2018.11.26.23.30.09.430.0 ]--
+r 37 Lab computer or your own computer: personal como
+--[ 2018.11.26.23.30.09.849.0 ]--
+r 37 Lab computer or your own computer: personal com
+--[ 2018.11.26.23.30.10.132.0 ]--
+r 37 Lab computer or your own computer: personal comp
+--[ 2018.11.26.23.30.10.308.0 ]--
+r 37 Lab computer or your own computer: personal compu
+--[ 2018.11.26.23.30.10.417.0 ]--
+r 37 Lab computer or your own computer: personal comput
+--[ 2018.11.26.23.30.10.563.0 ]--
+r 37 Lab computer or your own computer: personal compute
+--[ 2018.11.26.23.30.10.689.0 ]--
+r 37 Lab computer or your own computer: personal computer
+--[ 2018.11.26.23.30.11.168.0 ]--
+r 37 Lab computer or your own computer: personal computers
+--[ 2018.11.26.23.30.13.001.0 ]--
+r 39 Approx hours to complete assignment: 
+--[ 2018.11.26.23.30.13.642.0 ]--
+r 39 Approx hours to complete assignment: 1
+--[ 2018.11.26.23.30.13.783.0 ]--
+r 39 Approx hours to complete assignment: 10
+--[ 2018.11.26.23.30.13.889.0 ]--
+r 39 Approx hours to complete assignment: 10 
+--[ 2018.11.26.23.30.14.060.0 ]--
+r 39 Approx hours to complete assignment: 10 h
+--[ 2018.11.26.23.30.14.175.0 ]--
+r 39 Approx hours to complete assignment: 10 ho
+--[ 2018.11.26.23.30.14.282.0 ]--
+r 39 Approx hours to complete assignment: 10 hou
+--[ 2018.11.26.23.30.14.382.0 ]--
+r 39 Approx hours to complete assignment: 10 hour
+--[ 2018.11.26.23.30.14.568.0 ]--
+r 39 Approx hours to complete assignment: 10 hours
+--[ 2018.11.26.23.30.16.062.0 ]--
+r 41 Partner's name (if applicable): 
+--[ 2018.11.26.23.30.17.460.0 ]--
+r 41 Partner's name (if applicable): T
+--[ 2018.11.26.23.30.17.610.0 ]--
+r 41 Partner's name (if applicable): Te
+--[ 2018.11.26.23.30.17.850.0 ]--
+r 41 Partner's name (if applicable): Tea
+--[ 2018.11.26.23.30.17.961.0 ]--
+r 41 Partner's name (if applicable): Team
+--[ 2018.11.26.23.30.18.055.0 ]--
+r 41 Partner's name (if applicable): Team 
+--[ 2018.11.26.23.30.18.349.0 ]--
+r 41 Partner's name (if applicable): Team A
+--[ 2018.11.26.23.30.18.632.0 ]--
+r 41 Partner's name (if applicable): Team As
+--[ 2018.11.26.23.30.18.814.0 ]--
+r 41 Partner's name (if applicable): Team Ass
+--[ 2018.11.26.23.30.18.903.0 ]--
+r 41 Partner's name (if applicable): Team Assi
+--[ 2018.11.26.23.30.19.636.0 ]--
+r 41 Partner's name (if applicable): Team Assig
+--[ 2018.11.26.23.30.19.760.0 ]--
+r 41 Partner's name (if applicable): Team Assign
+--[ 2018.11.26.23.30.19.957.0 ]--
+r 41 Partner's name (if applicable): Team Assignm
+--[ 2018.11.26.23.30.20.098.0 ]--
+r 41 Partner's name (if applicable): Team Assignmt
+--[ 2018.11.26.23.30.20.285.0 ]--
+r 41 Partner's name (if applicable): Team Assignmtn
+--[ 2018.11.26.23.30.20.367.0 ]--
+r 41 Partner's name (if applicable): Team Assignmtne
+--[ 2018.11.26.23.30.20.553.0 ]--
+r 41 Partner's name (if applicable): Team Assignmtnet
+--[ 2018.11.26.23.30.20.909.0 ]--
+r 41 Partner's name (if applicable): Team Assignmtne
+--[ 2018.11.26.23.30.21.060.0 ]--
+r 41 Partner's name (if applicable): Team Assignmtn
+--[ 2018.11.26.23.30.21.194.0 ]--
+r 41 Partner's name (if applicable): Team Assignmt
+--[ 2018.11.26.23.30.21.349.0 ]--
+r 41 Partner's name (if applicable): Team Assignm
+--[ 2018.11.26.23.30.21.437.0 ]--
+r 41 Partner's name (if applicable): Team Assignme
+--[ 2018.11.26.23.30.21.594.0 ]--
+r 41 Partner's name (if applicable): Team Assignmen
+--[ 2018.11.26.23.30.21.712.0 ]--
+r 41 Partner's name (if applicable): Team Assignment
+--[ 2018.11.26.23.30.23.375.0 ]--
+r 43 TA's or Tutor's name (if received help): 
+--[ 2018.11.26.23.30.24.513.0 ]--
+r 43 TA's or Tutor's name (if received help): E
+--[ 2018.11.26.23.30.24.703.0 ]--
+r 43 TA's or Tutor's name (if received help): Ed
+--[ 2018.11.26.23.30.24.895.0 ]--
+r 43 TA's or Tutor's name (if received help): Edt
+--[ 2018.11.26.23.30.25.259.0 ]--
+r 43 TA's or Tutor's name (if received help): Ed
+--[ 2018.11.26.23.30.25.357.0 ]--
+r 43 TA's or Tutor's name (if received help): Edr
+--[ 2018.11.26.23.30.25.494.0 ]--
+r 43 TA's or Tutor's name (if received help): Edri
+--[ 2018.11.26.23.30.25.985.0 ]--
+r 43 TA's or Tutor's name (if received help): Edri 
+--[ 2018.11.26.23.30.26.297.0 ]--
+r 43 TA's or Tutor's name (if received help): Edri
+--[ 2018.11.26.23.30.26.694.0 ]--
+r 43 TA's or Tutor's name (if received help): Edric
+--[ 2018.11.26.23.30.26.862.0 ]--
+r 43 TA's or Tutor's name (if received help): Edric 
+--[ 2018.11.26.23.30.27.086.0 ]--
+r 43 TA's or Tutor's name (if received help): Edric Y
+--[ 2018.11.26.23.30.28.422.0 ]--
+r 43 TA's or Tutor's name (if received help): Edric Yu
+--[ 2018.11.26.23.30.29.846.0 ]--
+r 45 Did you receive help from your instructor? 
+--[ 2018.11.26.23.30.30.816.0 ]--
+r 45 Did you receive help from your instructor? y
+--[ 2018.11.26.23.30.31.098.0 ]--
+r 45 Did you receive help from your instructor? ye
+--[ 2018.11.26.23.30.32.160.0 ]--
+r 45 Did you receive help from your instructor? y
+--[ 2018.11.26.23.30.32.302.0 ]--
+r 45 Did you receive help from your instructor? 
+--[ 2018.11.26.23.30.32.481.0 ]--
+r 45 Did you receive help from your instructor? a
+--[ 2018.11.26.23.30.32.756.0 ]--
+r 45 Did you receive help from your instructor? at
+--[ 2018.11.26.23.30.32.889.0 ]--
+r 45 Did you receive help from your instructor? at 
+--[ 2018.11.26.23.30.33.036.0 ]--
+r 45 Did you receive help from your instructor? at s
+--[ 2018.11.26.23.30.33.102.0 ]--
+r 45 Did you receive help from your instructor? at so
+--[ 2018.11.26.23.30.33.242.0 ]--
+r 45 Did you receive help from your instructor? at som
+--[ 2018.11.26.23.30.33.316.0 ]--
+r 45 Did you receive help from your instructor? at some
+--[ 2018.11.26.23.30.33.486.0 ]--
+r 45 Did you receive help from your instructor? at some 
+--[ 2018.11.26.23.30.34.222.0 ]--
+r 45 Did you receive help from your instructor? at some p
+--[ 2018.11.26.23.30.34.369.0 ]--
+r 45 Did you receive help from your instructor? at some pi
+--[ 2018.11.26.23.30.34.623.0 ]--
+r 45 Did you receive help from your instructor? at some pii
+--[ 2018.11.26.23.30.35.344.0 ]--
+r 45 Did you receive help from your instructor? at some pi
+--[ 2018.11.26.23.30.35.504.0 ]--
+r 45 Did you receive help from your instructor? at some p
+--[ 2018.11.26.23.30.35.621.0 ]--
+r 45 Did you receive help from your instructor? at some 
+--[ 2018.11.26.23.30.35.772.0 ]--
+r 45 Did you receive help from your instructor? at some
+--[ 2018.11.26.23.30.35.907.0 ]--
+r 45 Did you receive help from your instructor? at som
+--[ 2018.11.26.23.30.36.227.0 ]--
+r 45 Did you receive help from your instructor? at so
+--[ 2018.11.26.23.30.36.363.0 ]--
+r 45 Did you receive help from your instructor? at s
+--[ 2018.11.26.23.30.36.533.0 ]--
+r 45 Did you receive help from your instructor? at 
+--[ 2018.11.26.23.30.36.668.0 ]--
+r 45 Did you receive help from your instructor? at
+--[ 2018.11.26.23.30.36.800.0 ]--
+r 45 Did you receive help from your instructor? a
+--[ 2018.11.26.23.30.37.023.0 ]--
+r 45 Did you receive help from your instructor? 
+--[ 2018.11.26.23.30.37.496.0 ]--
+r 45 Did you receive help from your instructor? y
+--[ 2018.11.26.23.30.37.602.0 ]--
+r 45 Did you receive help from your instructor? ye
+--[ 2018.11.26.23.30.37.800.0 ]--
+r 45 Did you receive help from your instructor? yea
+--[ 2018.11.26.23.30.37.914.0 ]--
+r 45 Did you receive help from your instructor? yeah
+--[ 2018.11.26.23.30.38.018.0 ]--
+r 45 Did you receive help from your instructor? yeah 
+--[ 2018.11.26.23.30.38.244.0 ]--
+r 45 Did you receive help from your instructor? yeah a
+--[ 2018.11.26.23.30.38.543.0 ]--
+r 45 Did you receive help from your instructor? yeah at
+--[ 2018.11.26.23.30.38.713.0 ]--
+r 45 Did you receive help from your instructor? yeah at 
+--[ 2018.11.26.23.30.39.113.0 ]--
+r 45 Did you receive help from your instructor? yeah at
+--[ 2018.11.26.23.30.39.277.0 ]--
+r 45 Did you receive help from your instructor? yeah a
+--[ 2018.11.26.23.30.39.394.0 ]--
+r 45 Did you receive help from your instructor? yeah 
+--[ 2018.11.26.23.30.39.588.0 ]--
+r 45 Did you receive help from your instructor? yeah
+--[ 2018.11.26.23.30.40.052.0 ]--
+r 45 Did you receive help from your instructor? yeah,
+--[ 2018.11.26.23.30.40.262.0 ]--
+r 45 Did you receive help from your instructor? yeah, 
+--[ 2018.11.26.23.30.40.378.0 ]--
+r 45 Did you receive help from your instructor? yeah, a
+--[ 2018.11.26.23.30.40.532.0 ]--
+r 45 Did you receive help from your instructor? yeah, at
+--[ 2018.11.26.23.30.40.702.0 ]--
+r 45 Did you receive help from your instructor? yeah, at 
+--[ 2018.11.26.23.30.40.819.0 ]--
+r 45 Did you receive help from your instructor? yeah, at s
+--[ 2018.11.26.23.30.40.913.0 ]--
+r 45 Did you receive help from your instructor? yeah, at so
+--[ 2018.11.26.23.30.41.047.0 ]--
+r 45 Did you receive help from your instructor? yeah, at som
+--[ 2018.11.26.23.30.41.197.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some
+--[ 2018.11.26.23.30.41.687.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some 
+--[ 2018.11.26.23.30.42.113.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some p
+--[ 2018.11.26.23.30.42.245.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some po
+--[ 2018.11.26.23.30.42.335.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some poi
+--[ 2018.11.26.23.30.42.593.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some poin
+--[ 2018.11.26.23.30.42.690.0 ]--
+r 45 Did you receive help from your instructor? yeah, at some point
+--[ 2018.11.26.23.30.51.482.0 ]--
+r 56 Our Node contained the location of the point, the value assigned to the node, as well as references to the nodes on its direct left and right, and the direction which is either left right or up down.

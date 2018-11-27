@@ -125,7 +125,7 @@ public class PSKDTree<Value> implements PointSearch<Value> {
     }
 
     public Value getNearest(Point p) {
-        return root.v;
+        return get(nearest(p));
     }
 
     // return an iterable of all points in collection

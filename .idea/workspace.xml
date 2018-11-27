@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2403a7f6-0c3c-48f4-9a3c-c140d3e5d745" name="Default" comment="Rewrote the get and working on the put.">
-      <change afterPath="$PROJECT_DIR$/readme_Chan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.log/history.log" beforeDir="false" afterPath="$PROJECT_DIR$/.log/history.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.html" beforeDir="false" afterPath="$PROJECT_DIR$/readme.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PSBruteForce.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PSBruteForce.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PSKDTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PSKDTree.java" afterDir="false" />
     </list>
     <ignored path="P05_KDTrees.iws" />
@@ -96,14 +92,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="408" />
-          <entry key="java" value="2211" />
+          <entry key="html" value="824" />
+          <entry key="java" value="2215" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="408" />
-          <entry key="JAVA" value="2211" />
+          <entry key="HTML" value="824" />
+          <entry key="JAVA" value="2215" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -176,11 +172,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PSKDTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4845">
-              <caret line="285" lean-forward="true" selection-start-line="285" selection-end-line="285" />
+            <state relative-caret-position="2159">
+              <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4244#4245#0" expanded="true" />
@@ -202,11 +198,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/readme.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2176">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+            <state relative-caret-position="-510">
+              <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -297,7 +293,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="FullScreen" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543283580580" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543292744381" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -1424,17 +1420,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PSKDTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4845">
-          <caret line="285" lean-forward="true" selection-start-line="285" selection-end-line="285" />
+        <state relative-caret-position="2159">
+          <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4244#4245#0" expanded="true" />
@@ -1443,6 +1432,13 @@
             <element signature="e#8700#8701#0" expanded="true" />
             <element signature="e#8739#8740#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
         </state>
       </provider>
     </entry>
